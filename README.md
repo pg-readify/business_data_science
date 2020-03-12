@@ -67,19 +67,26 @@ start "" "http://localhost:8787";
 
 ### Inside your Docker container:
 
-Welcome to the `Business Problem Solving with Data` session. This docker container should have everything you need to get going.
+One you've spun-up your docker container and opened your browser at `localhost:8787`, you're no longer in Mac or Windows, you're in Linux (one of the `Debian` flavours). If this is your first time using Linux, congrats! :)
 
-### Useful links
+Your docker container will load into the R-studio IDE.
+
+#### Download the data, etc
+
+Run commands in Terminal tab:
+
+``` r
+cd ~;
+.\first_time_setup;
+```
+
+#### Useful links
 
 -   This Rstudio Server IDE: <a href="http://localhost:8787" target="_blank">Rstudio Server</a>
 
 -   The notebook for the session: <a href="http://localhost:3838/nyc_taxi_notebook/" target="_blank">NYC Taxis Workbook</a>
 
 -   Some examples of shiny apps that you can edit and play with: <a href="http://localhost:3838/examples/" target="_blank">Shiny Examples</a>
-
-### Download the data, etc
-
-run command in Terminal tab: `.\first_time_setup`
 
 ------------------------------------------------------------------------
 
