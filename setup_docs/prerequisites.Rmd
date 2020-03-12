@@ -1,0 +1,37 @@
+---
+title: "Prerequisites: Business Problem Solving with Data"
+author: "Paul Goodall"
+date: "12/03/2020"
+output: html_document
+---
+
+These are fairly large downloads (1.GB and 3.GB respectively) - best to do it in the office, and allow plenty of time before tomorrow's session.
+
+---
+
+### 1) Need to install Docker Desktop:
+
+#### 1.1) Windows: (917.MB)
+<https://hub.docker.com/editions/community/docker-ce-desktop-windows/>
+
+#### 1.2) Mac: (708.MB)
+<https://hub.docker.com/editions/community/docker-ce-desktop-mac/>
+  
+---
+
+### 2) Need to Pull the docker image to your machine:
+
+#### 2.1) Windows: 
+
+  - Open PowerShell
+  
+  - type: `docker pull hercules123/goodsy_nyc_taxis`
+
+#### 2.2) Mac: 
+
+  - Open a terminal
+  
+  - type: `docker pull hercules123/goodsy_nyc_taxis`
+  
+---
+  

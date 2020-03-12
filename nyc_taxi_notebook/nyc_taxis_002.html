@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Paul Goodall - 2/3/2020" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Problem Solving using Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="nyc_taxis_001.html">Business Case</a>
+</li>
+<li>
+  <a href="nyc_taxis_002.html">Real Data Case</a>
+</li>
+<li>
+  <a href="nyc_taxis_003.html">Cleaning Data (easy)</a>
+</li>
+<li>
+  <a href="nyc_taxis_004.html">Cleaning Data (hard)</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<hr />
+<div id="real-world-data" class="section level2 tabset tabset-fade tabset-pills">
+<h2>Real World Data</h2>
+<div id="case-study-objectives" class="section level3">
+<h3>Case Study Objectives</h3>
+<hr />
+<div id="case-study-objectives-1" class="section level4">
+<h4>Case Study Objectives</h4>
+<p>Our goal is to understand the data well enough be able to answer some basic questions about it (see below), and to understand whether the dataset follows our intuitions or not. (If not, it probably needs some cleaning!)</p>
+<p><img src="images/new_york_global.jpg" alt="Google Maps: New York Globally" /> <img src="images/combined_maps.jpg" alt="Google Maps: New York State" /></p>
+<div id="basic-question-examples" class="section level5">
+<h5>Basic Question examples</h5>
+<ol style="list-style-type: decimal">
+<li>What is the distribution of number of passengers per trip?</li>
+<li>What is the distribution of payment_type?</li>
+<li>What is the distribution of fare amount?</li>
+<li>What is the distribution of tip amount?</li>
+<li>What is the distribution of total amount?</li>
+<li>What are top 5 busiest hours of the day?</li>
+<li>What are the top 10 busiest locations of the city?</li>
+<li>Which trip has the highest standard deviation of travel time?</li>
+<li>Which trip has most consistent fares?</li>
+</ol>
+</div>
+<div id="business-question-example" class="section level5">
+<h5>Business Question example</h5>
+<ol style="list-style-type: decimal">
+<li>If you were a taxi driver, what would your strategy be to make the most profit? (Assume a 40-hour working week)</li>
+</ol>
+<p>Before we can get to these questions, we must first get the data into good shape.</p>
+<hr />
+</div>
+</div>
+</div>
+<div id="analytics-setup" class="section level3 tabset tabset-fade tabset-pills">
+<h3>Analytics Setup</h3>
+<hr />
+<p>Not very interesting, but necessery - feel free to skip over this section.</p>
+<div id="notebook-setup" class="section level4">
+<h4>Notebook setup</h4>
+<p>Some admin relating to this notebook before we get started…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set the working directory for this work:</span>
+<span class="co">#setwd(&quot;~/NYC_Taxis&quot;)</span>
+
+<span class="co"># ============================</span>
+<span class="co"># To prevent libraries displaying messy messages when loading, I&#39;m going to re-define the function as an alias:</span>
+library &lt;-<span class="st"> </span><span class="cf">function</span>(...){
+    <span class="kw">suppressPackageStartupMessages</span>(base<span class="op">::</span><span class="kw">library</span>(...))
+}
+
+<span class="co"># ============================</span>
+<span class="co"># Load the libraries that we need:</span>
+<span class="kw">library</span>(knitr)
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(kableExtra)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(R.utils)
+
+<span class="co"># Create function for viewing tables simply in the notebook:</span>
+show_table &lt;-<span class="st"> </span><span class="cf">function</span>(my_table){
+  <span class="kw">kable</span>(my_table) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">column_spec</span>(<span class="dv">1</span>, <span class="dt">width =</span> <span class="st">&quot;10em&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">kable_styling</span>(<span class="dt">bootstrap_options =</span> <span class="kw">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))
+}
+<span class="co"># ============================</span>
+<span class="co"># Update Dictionary</span>
+update_dictionary &lt;-<span class="st"> </span><span class="cf">function</span>(my_vars){
+  data_dictionary<span class="op">$</span>Clean[<span class="kw">which</span>(data_dictionary<span class="op">$</span>Variable_Name <span class="op">%in%</span><span class="st"> </span>my_vars)] &lt;-<span class="st"> </span><span class="dv">1</span>  
+  <span class="kw">return</span> (data_dictionary)
+}
+
+<span class="co"># ============================</span>
+<span class="co"># Show Mini-Dictionary</span>
+show_mini_dictionary &lt;-<span class="st"> </span><span class="cf">function</span>(data_dictionary){
+  <span class="kw">show_table</span>(<span class="kw">cbind</span>(data_dictionary[<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>],data_dictionary[<span class="dv">8</span><span class="op">:</span><span class="dv">14</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>],data_dictionary[<span class="dv">15</span><span class="op">:</span><span class="dv">21</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]))
+}
+
+<span class="co"># ============================</span>
+<span class="co"># Show Dictionary Definition:</span>
+show_dict_defn &lt;-<span class="st"> </span><span class="cf">function</span>(my_varname){
+  ii &lt;-<span class="st"> </span><span class="kw">which</span>(data_dictionary<span class="op">$</span>Variable_Name <span class="op">==</span><span class="st"> </span>my_varname)
+  <span class="kw">cat</span>(data_dictionary[ii,<span class="dv">2</span>], <span class="st">&quot;:</span><span class="ch">\n</span><span class="st">&quot;</span>, data_dictionary[ii,<span class="dv">3</span>])
+}
+
+<span class="co"># ============================</span>
+<span class="co"># Show double histogram:</span>
+double_hist &lt;-<span class="st"> </span><span class="cf">function</span>(my_x, <span class="dt">my_name =</span> <span class="st">&quot;varname&quot;</span>, <span class="dt">my_breaks =</span> <span class="dv">20</span>){
+  
+  x_norm_lin &lt;-<span class="st"> </span><span class="kw">round</span>(my_breaks<span class="op">*</span>(my_x <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(my_x))<span class="op">/</span>(<span class="kw">max</span>(my_x) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(my_x)))
+    
+  nyc_taxi_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> trip_time_in_secs)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span><span class="kw">scale_x_log10</span>()
+}
+
+<span class="co"># ============================</span>
+<span class="co"># Nice Summary:</span>
+nice_summary &lt;-<span class="st"> </span><span class="cf">function</span>(df_var){
+  aa &lt;-<span class="st"> </span><span class="kw">summary</span>(df_var)
+  <span class="kw">data.frame</span>(<span class="st">&#39;quantity&#39;</span>=<span class="kw">names</span>(aa), <span class="st">&#39;values&#39;</span>=<span class="kw">as.character</span>(aa))
+}</code></pre></div>
+<hr />
+</div>
+<div id="loading-the-data" class="section level4">
+<h4>Loading the data</h4>
+<p>Loading the actual data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># The first time this runs, it will download the data into the data/ folder.</span>
+<span class="co"># Subsequent times it will just read from the downloaded file.</span>
+
+  <span class="co">#If the data file isn&#39;t there, download it:</span>
+  <span class="cf">if</span>(<span class="op">!</span><span class="kw">file.exists</span>(<span class="st">&quot;data/nyc_taxi_data.csv.gz&quot;</span>)){
+    <span class="kw">system</span>(<span class="st">&quot;wget -P data/ https://www.dropbox.com/s/v3fy3slv41lg73q/nyc_taxi_data.csv.gz&quot;</span>)
+  }
+  
+
+<span class="co"># If the dataset is already in memory, don&#39;t reload it (it takes a while...)</span>
+<span class="cf">if</span>(quick_mode){
+  nyc_taxi_data &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">fread</span>(<span class="st">&quot;data/nyc_taxi_data_small.csv.gz&quot;</span>, <span class="dt">verbose=</span>F, <span class="dt">showProgress=</span>T))
+} <span class="cf">else</span>{
+  nyc_taxi_data &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(<span class="kw">fread</span>(<span class="st">&quot;data/nyc_taxi_data.csv.gz&quot;</span>, <span class="dt">verbose=</span>F, <span class="dt">showProgress=</span>T))
+}</code></pre></div>
+<p>Fix some of the data types:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Fix some of the data types:</span>
+nyc_taxi_data<span class="op">$</span>vendor_id &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nyc_taxi_data<span class="op">$</span>vendor_id)
+nyc_taxi_data<span class="op">$</span>rate_code &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nyc_taxi_data<span class="op">$</span>rate_code)
+nyc_taxi_data<span class="op">$</span>payment_type &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nyc_taxi_data<span class="op">$</span>payment_type)
+nyc_taxi_data<span class="op">$</span>store_and_fwd_flag &lt;-<span class="st"> </span><span class="kw">as.factor</span>(nyc_taxi_data<span class="op">$</span>store_and_fwd_flag)
+
+<span class="kw">names</span>(nyc_taxi_data)[<span class="dv">19</span>] &lt;-<span class="st"> &quot;tips&quot;</span>
+<span class="kw">names</span>(nyc_taxi_data)[<span class="dv">20</span>] &lt;-<span class="st"> &quot;tolls&quot;</span></code></pre></div>
+<p>Our data is now stored in the variable <code>nyc_taxi_data</code>.</p>
+<hr />
+</div>
+<div id="previewing-the-data" class="section level4">
+<h4>Previewing the Data</h4>
+<p>What are the dimensions of this dataset?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(nyc_taxi_data)</code></pre></div>
+<pre><code>## [1] 15099164       22</code></pre>
+<p>Over 15-million rows of data, and 22 columns of information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_table</span>(<span class="kw">head</span>(nyc_taxi_data)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>)</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+medallion
+</th>
+<th style="text-align:left;">
+hack_license
+</th>
+<th style="text-align:left;">
+vendor_id
+</th>
+<th style="text-align:left;">
+rate_code
+</th>
+<th style="text-align:left;">
+store_and_fwd_flag
+</th>
+<th style="text-align:left;">
+pickup_datetime
+</th>
+<th style="text-align:left;">
+dropoff_datetime
+</th>
+<th style="text-align:right;">
+passenger_count
+</th>
+<th style="text-align:right;">
+trip_time_in_secs
+</th>
+<th style="text-align:right;">
+trip_distance
+</th>
+<th style="text-align:right;">
+pickup_longitude
+</th>
+<th style="text-align:right;">
+pickup_latitude
+</th>
+<th style="text-align:right;">
+dropoff_longitude
+</th>
+<th style="text-align:right;">
+dropoff_latitude
+</th>
+<th style="text-align:left;">
+payment_type
+</th>
+<th style="text-align:right;">
+fare_amount
+</th>
+<th style="text-align:right;">
+surcharge
+</th>
+<th style="text-align:right;">
+mta_tax
+</th>
+<th style="text-align:right;">
+tips
+</th>
+<th style="text-align:right;">
+tolls
+</th>
+<th style="text-align:right;">
+total_amount
+</th>
+<th style="text-align:right;">
+randID
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 10em; ">
+91F6EB84975BBC867E32CB113C7C2CD5
+</td>
+<td style="text-align:left;">
+AD8751110E6292079EB10EB9481FE1A6
+</td>
+<td style="text-align:left;">
+CMT
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+2013-04-04 18:47:45
+</td>
+<td style="text-align:left;">
+2013-04-04 19:00:25
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+759
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+-73.95785
+</td>
+<td style="text-align:right;">
+40.76532
+</td>
+<td style="text-align:right;">
+-73.97627
+</td>
+<td style="text-align:right;">
+40.78565
+</td>
+<td style="text-align:left;">
+CRD
+</td>
+<td style="text-align:right;">
+11.0
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+2.50
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+15.00
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+EC34CD1B3797DFAFF3FE099BA87B6656
+</td>
+<td style="text-align:left;">
+8FE6A4AEDF89B6B4E19D2377FD3FB7D7
+</td>
+<td style="text-align:left;">
+CMT
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+2013-04-05 07:08:34
+</td>
+<td style="text-align:left;">
+2013-04-05 07:17:34
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+540
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:left;">
+CRD
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+10.80
+</td>
+<td style="text-align:right;">
+64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+C1B9DA774DC2BBC6DE27CE994E7F44A0
+</td>
+<td style="text-align:left;">
+E1B595FD55E4C82C1E213EB17438107A
+</td>
+<td style="text-align:left;">
+CMT
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+2013-04-04 17:59:50
+</td>
+<td style="text-align:left;">
+2013-04-04 18:21:48
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1318
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+-73.98288
+</td>
+<td style="text-align:right;">
+40.75499
+</td>
+<td style="text-align:right;">
+-74.00919
+</td>
+<td style="text-align:right;">
+40.71537
+</td>
+<td style="text-align:left;">
+CRD
+</td>
+<td style="text-align:right;">
+16.5
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+3.60
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+21.60
+</td>
+<td style="text-align:right;">
+68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+9BA84250355AB3FC031C9252D395BF8A
+</td>
+<td style="text-align:left;">
+16BB0D96A0DCC853AEC7F55C8D6C71E0
+</td>
+<td style="text-align:left;">
+CMT
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+2013-04-04 18:12:01
+</td>
+<td style="text-align:left;">
+2013-04-04 18:25:24
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+799
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:right;">
+-73.97812
+</td>
+<td style="text-align:right;">
+40.76345
+</td>
+<td style="text-align:right;">
+-73.95567
+</td>
+<td style="text-align:right;">
+40.77664
+</td>
+<td style="text-align:left;">
+CRD
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+3.45
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14.95
+</td>
+<td style="text-align:right;">
+73
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+205A696DF62AD03C88DA8C5EC5248639
+</td>
+<td style="text-align:left;">
+579C41EA5EC846F8B641A42F9EE3E855
+</td>
+<td style="text-align:left;">
+CMT
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+2013-04-04 20:12:57
+</td>
+<td style="text-align:left;">
+2013-04-04 20:29:55
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1017
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+-74.00637
+</td>
+<td style="text-align:right;">
+40.74475
+</td>
+<td style="text-align:right;">
+-73.96166
+</td>
+<td style="text-align:right;">
+40.76108
+</td>
+<td style="text-align:left;">
+CRD
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+3.20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+19.20
+</td>
+<td style="text-align:right;">
+39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 10em; ">
+EE75E5927D00739AC342810C336A825E
+</td>
+<td style="text-align:left;">
+1B4E92431F9DA4D49874EC76E769E874
+</td>
+<td style="text-align:left;">
+CMT
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+2013-04-05 02:48:11
+</td>
+<td style="text-align:left;">
+2013-04-05 02:51:21
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+189
+</td>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+-73.98519
+</td>
+<td style="text-align:right;">
+40.75493
+</td>
+<td style="text-align:right;">
+-73.99078
+</td>
+<td style="text-align:right;">
+40.74800
+</td>
+<td style="text-align:left;">
+CRD
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+1.10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6.60
+</td>
+<td style="text-align:right;">
+76
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> </p>
+<p>We can get deeper insights into each variable in the dataset with a summary:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data)</code></pre></div>
+<pre><code>##   medallion         hack_license       vendor_id       rate_code        store_and_fwd_flag pickup_datetime    dropoff_datetime   passenger_count trip_time_in_secs trip_distance    
+##  Length:15099164    Length:15099164    CMT:7582275   1      :14768079    :7517603          Length:15099164    Length:15099164    Min.   :0.000   Min.   :    0.0   Min.   :  0.000  
+##  Class :character   Class :character   VTS:7516889   2      :  254243   N:7451591          Class :character   Class :character   1st Qu.:1.000   1st Qu.:  360.0   1st Qu.:  1.040  
+##  Mode  :character   Mode  :character                 5      :   39096   Y: 129970          Mode  :character   Mode  :character   Median :1.000   Median :  600.0   Median :  1.780  
+##                                                      3      :   21863                                                            Mean   :1.709   Mean   :  746.6   Mean   :  2.863  
+##                                                      4      :   14552                                                            3rd Qu.:2.000   3rd Qu.:  960.0   3rd Qu.:  3.200  
+##                                                      0      :    1145                                                            Max.   :9.000   Max.   :10800.0   Max.   :100.000  
+##                                                      (Other):     186                                                                                                               
+##  pickup_longitude   pickup_latitude    dropoff_longitude  dropoff_latitude   payment_type   fare_amount       surcharge          mta_tax            tips             tolls        
+##  Min.   :-2323.42   Min.   :-3481.14   Min.   :-2771.29   Min.   :-3547.90   CRD:8105102   Min.   :  2.50   Min.   : 0.0000   Min.   :0.0000   Min.   :  0.000   Min.   : 0.0000  
+##  1st Qu.:  -73.99   1st Qu.:   40.73   1st Qu.:  -73.99   1st Qu.:   40.73   CSH:6942763   1st Qu.:  6.50   1st Qu.: 0.0000   1st Qu.:0.5000   1st Qu.:  0.000   1st Qu.: 0.0000  
+##  Median :  -73.98   Median :   40.75   Median :  -73.98   Median :   40.75   DIS:  11542   Median :  9.50   Median : 0.0000   Median :0.5000   Median :  1.000   Median : 0.0000  
+##  Mean   :  -72.74   Mean   :   40.07   Mean   :  -72.70   Mean   :   40.05   NOC:  33575   Mean   : 12.27   Mean   : 0.3267   Mean   :0.4983   Mean   :  1.346   Mean   : 0.2445  
+##  3rd Qu.:  -73.97   3rd Qu.:   40.77   3rd Qu.:  -73.96   3rd Qu.:   40.77   UNK:   6182   3rd Qu.: 14.00   3rd Qu.: 0.5000   3rd Qu.:0.5000   3rd Qu.:  2.000   3rd Qu.: 0.0000  
+##  Max.   : 2228.72   Max.   : 3210.39   Max.   : 2228.75   Max.   : 3577.13                 Max.   :500.00   Max.   :15.0000   Max.   :0.5000   Max.   :200.000   Max.   :20.0000  
+##                                        NA&#39;s   :146        NA&#39;s   :146                                                                                                             
+##   total_amount        randID      
+##  Min.   :  2.50   Min.   :  1.00  
+##  1st Qu.:  8.00   1st Qu.: 26.00  
+##  Median : 11.00   Median : 50.00  
+##  Mean   : 14.69   Mean   : 50.49  
+##  3rd Qu.: 16.50   3rd Qu.: 75.00  
+##  Max.   :628.10   Max.   :100.00  
+## </code></pre>
+<hr />
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

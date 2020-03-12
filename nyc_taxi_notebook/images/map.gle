@@ -1,0 +1,12 @@
+
+lx = 10
+ly = 10
+gap = 0.5
+
+size 2*lx+gap ly
+amove 0 0
+bitmap "new_york_state.png" lx ly
+
+amove lx+gap 0
+bitmap "ny_map_basic.png" lx ly
+

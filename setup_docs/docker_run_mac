@@ -1,0 +1,4 @@
+mkdir -p ~/docker_wormhole;
+docker run -d -p 8787:8787 -p 3838:3838 -m=4g -v ~/docker_wormhole:/home/rstudio/docker_wormhole -e DISABLE_AUTH=true hercules123/goodsy_nyc_taxis;
+sleep 1;
+open http://localhost:8787;

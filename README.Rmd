@@ -1,0 +1,29 @@
+---
+title: "Business Data Science"
+author: "Paul Goodall"
+date: "12/03/2020"
+output: rmarkdown::github_document
+---
+
+This is the Repo associated with the `Business Problem Solving using Data` workshop.
+
+---
+
+```{r child = 'setup_docs/prerequisites.Rmd'}
+```
+
+---
+
+```{r child = 'setup_docs/starting_docker_Session.Rmd'}
+```
+
+---
+
+```{r child = 'setup_docs/getting_started.Rmd'}
+```
+
+---
+
+If all else fails, you can follow along here:
+<a href="https://pg-readify.github.io/nyc_taxi_webpage/" target="_blank">Workshop Notebook</a> 
+

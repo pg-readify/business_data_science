@@ -1,0 +1,28 @@
+---
+title: "Getting Started"
+author: "Paul Goodall"
+date: "12/03/2020"
+output: html_document
+---
+
+### Mac Startup
+
+You can use the Mac app `mac_run_session.app`, or you can copy-paste the following commands into Terminal:
+
+```{r, eval=F}
+mkdir -p ~/docker_wormhole;
+docker run -d -p 8787:8787 -p 3838:3838 -m=4g -v ~/docker_wormhole:/home/rstudio/docker_wormhole -e DISABLE_AUTH=true hercules123/goodsy_nyc_taxis;
+sleep 1;
+open http://localhost:8787;
+```
+
+### Windows Startup
+
+You will need to copy-paste the following commands into PowerShell:
+
+```{r, eval=F}
+md C:\Users\$USER\docker_wormhole;
+docker run -d -p 8787:8787 -p 3838:3838 -m=4g -v C:\Users\$USER\docker_wormhole:/home/rstudio/docker_wormhole -e DISABLE_AUTH=true hercules123/goodsy_nyc_taxis;
+timeout 1;
+start "" "http://localhost:8787";
+```

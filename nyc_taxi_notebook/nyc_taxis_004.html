@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Paul Goodall - 2/3/2020" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-binding-2.0.3.9000/leaflet.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Problem Solving using Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="nyc_taxis_001.html">Business Case</a>
+</li>
+<li>
+  <a href="nyc_taxis_002.html">Real Data Case</a>
+</li>
+<li>
+  <a href="nyc_taxis_003.html">Cleaning Data (easy)</a>
+</li>
+<li>
+  <a href="nyc_taxis_004.html">Cleaning Data (hard)</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<hr />
+<div id="geospatial-coordinates-cleaning-hard" class="section level2 tabset tabset-fade tabset-pills">
+<h2>Geospatial Coordinates cleaning (hard)</h2>
+<div id="view-gps-coords" class="section level3">
+<h3>View GPS Coords</h3>
+<hr />
+<div id="view-gps-coords-1" class="section level4">
+<h4>View GPS Coords</h4>
+<p>Important info:</p>
+<ul>
+<li><p>Latitudes go from -90 (South Pole) to +90 (North Pole) with 0 all along the equator</p></li>
+<li><p>Longitudes start at 0 in London (Greenwhich) and stretch East and West 180 degrees each way (180E == 180W)</p></li>
+<li><p>East and West are often distinguised by using +ve and -ve values (i.e. -90 = 90W etc)</p></li>
+</ul>
+<p>Let’s have a look at our own GPS coord data for the taxis:</p>
+<ul>
+<li><p>pickup_latitude</p></li>
+<li><p>pickup_longitude</p></li>
+<li><p>dropoff_latitude</p></li>
+<li><p>dropoff_longitude</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>pickup_latitude)</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -3481.14    40.73    40.75    40.07    40.77  3210.39</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>pickup_longitude)</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -2323.42   -73.99   -73.98   -72.74   -73.97  2228.72</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>dropoff_latitude)</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
+## -3547.90    40.73    40.75    40.05    40.77  3577.13      146</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>dropoff_longitude)</code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
+## -2771.29   -73.99   -73.98   -72.70   -73.96  2228.75      146</code></pre>
+<p>As you can see, there’s something pretty seriously wrong here, with coordinate values far outside the allowed ranges: lat=(-90:90), lon=(-180:180).</p>
+<p>Let’s do some pretty serious flagging of the data by imposing the allowed range of latitude and longitude.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##### pickup_latitude
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>pickup_latitude <span class="op">&gt;</span><span class="st">  </span><span class="dv">90</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_latitude &gt; +90,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>pickup_latitude <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="dv">90</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_latitude &lt; -90,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(nyc_taxi_data<span class="op">$</span>pickup_latitude))
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_latitude is NA,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>pickup_latitude <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_latitude = 0,&quot;</span>)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##### pickup_longitude
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>pickup_longitude <span class="op">&gt;</span><span class="st">  </span><span class="dv">180</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_longitude &gt; +180,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>pickup_longitude <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="dv">180</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_longitude &lt; -180,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(nyc_taxi_data<span class="op">$</span>pickup_longitude))
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_longitude is NA,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>pickup_longitude <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;pickup_longitude = 0,&quot;</span>)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##### dropoff_latitude
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_latitude <span class="op">&gt;</span><span class="st">  </span><span class="dv">90</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_latitude &gt; +90,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_latitude <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="dv">90</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_latitude &lt; -90,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(nyc_taxi_data<span class="op">$</span>dropoff_latitude))
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_latitude is NA,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_latitude <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_latitude = 0,&quot;</span>)
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##### dropoff_longitude
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_longitude <span class="op">&gt;</span><span class="st">  </span><span class="dv">180</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_longitude &gt; +180,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_longitude <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="dv">180</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_longitude &lt; -180,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">is.na</span>(nyc_taxi_data<span class="op">$</span>dropoff_longitude))
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_longitude is NA,&quot;</span>)
+}
+
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_longitude <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)
+<span class="cf">if</span>(<span class="kw">length</span>(ii) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>){
+  nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> </span><span class="kw">paste0</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag[ii], <span class="st">&quot;dropoff_longitude = 0,&quot;</span>)
+}</code></pre></div>
+<div id="how-much-bad-data-did-we-find" class="section level5">
+<h5>How much bad data did we find?</h5>
+<p>Let’s have a look at how much data we flagged:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(bad_data_flag) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                    </span><span class="kw">summarise</span>(<span class="dt">num_flagged=</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(num_flagged)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                    </span><span class="kw">select</span>(num_flagged, bad_data_flag) <span class="op">%&gt;%</span>
+<span class="st">                    </span><span class="kw">show_table</span>()</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+num_flagged
+</th>
+<th style="text-align:left;">
+bad_data_flag
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+14828759
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+242319
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+15689
+</td>
+<td style="text-align:left;">
+dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+7487
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1634
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1552
+</td>
+<td style="text-align:left;">
+dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+558
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+243
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+222
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+143
+</td>
+<td style="text-align:left;">
+dropoff_latitude is NA,dropoff_longitude is NA,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+141
+</td>
+<td style="text-align:left;">
+dropoff_latitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+138
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+51
+</td>
+<td style="text-align:left;">
+time travelling,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+23
+</td>
+<td style="text-align:left;">
+dropoff_longitude &lt; -180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+19
+</td>
+<td style="text-align:left;">
+pickup_longitude &lt; -180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+18
+</td>
+<td style="text-align:left;">
+pickup_latitude &lt; -90,pickup_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+16
+</td>
+<td style="text-align:left;">
+dropoff_latitude &gt; +90,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+15
+</td>
+<td style="text-align:left;">
+dropoff_latitude &lt; -90,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+14
+</td>
+<td style="text-align:left;">
+pickup_latitude &gt; +90,pickup_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+14
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_latitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+12
+</td>
+<td style="text-align:left;">
+dropoff_latitude &gt; +90,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+9
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude &lt; -180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+8
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+8
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,dropoff_latitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+6
+</td>
+<td style="text-align:left;">
+pickup_latitude &lt; -90,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+6
+</td>
+<td style="text-align:left;">
+time travelling,pickup_latitude = 0,pickup_longitude = 0,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+5
+</td>
+<td style="text-align:left;">
+dropoff_latitude &lt; -90,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+5
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+5
+</td>
+<td style="text-align:left;">
+pickup_latitude &gt; +90,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+5
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_longitude &lt; -180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+4
+</td>
+<td style="text-align:left;">
+dropoff_longitude &gt; +180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+4
+</td>
+<td style="text-align:left;">
+pickup_latitude &gt; +90,pickup_longitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+4
+</td>
+<td style="text-align:left;">
+pickup_longitude &lt; -180,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+3
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,dropoff_latitude is NA,dropoff_longitude is NA,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+3
+</td>
+<td style="text-align:left;">
+pickup_latitude &gt; +90,pickup_longitude = 0,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+3
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_latitude &lt; -90,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+3
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_latitude &gt; +90,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+2
+</td>
+<td style="text-align:left;">
+pickup_latitude &lt; -90,pickup_longitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+2
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,dropoff_latitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+2
+</td>
+<td style="text-align:left;">
+pickup_longitude &gt; +180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_latitude = 0,dropoff_longitude &lt; -180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_latitude &lt; -90,pickup_longitude = 0,dropoff_latitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_latitude &lt; -90,pickup_longitude = 0,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,dropoff_latitude &gt; +90,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_latitude = 0,pickup_longitude = 0,dropoff_longitude &lt; -180,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_latitude &gt; +90,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_longitude &lt; -180,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_longitude = 0,dropoff_latitude &lt; -90,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_longitude &gt; +180,dropoff_latitude = 0,dropoff_longitude = 0,
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+time travelling,pickup_latitude = 0,pickup_longitude = 0,
+</td>
+</tr>
+</tbody>
+</table>
+<p>Great! It’s only a small amount of bad data. Let’s re-look at the summaries with the bad data removed:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag <span class="op">==</span><span class="st"> &quot;&quot;</span>)
+<span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>pickup_latitude[ii])</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  -74.02   40.74   40.75   40.75   40.77   74.01</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>pickup_longitude[ii])</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -157.82  -73.99  -73.98  -73.97  -73.97  100.99</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>dropoff_latitude[ii])</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  -74.07   40.74   40.75   40.75   40.77   74.04</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(nyc_taxi_data<span class="op">$</span>dropoff_longitude[ii])</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -157.82  -73.99  -73.98  -73.97  -73.97  100.99</code></pre>
+<p>Still some pretty large ranges in longitude and latitude for a taxi company! Let’s plot some of these points on a map:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_sample &lt;-<span class="st"> </span>nyc_taxi_data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(bad_data_flag <span class="op">==</span><span class="st"> &quot;&quot;</span>, randID <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(pickup_latitude,pickup_longitude,dropoff_latitude,dropoff_longitude) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">1000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(leaflet)
+sample_coords_map &lt;-<span class="st"> </span><span class="kw">leaflet</span>(data_sample) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">                      </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">addCircleMarkers</span>(<span class="dt">lng =</span> <span class="op">~</span>pickup_longitude,
+                                       <span class="dt">lat =</span> <span class="op">~</span>pickup_latitude,
+                                       <span class="dt">radius =</span> <span class="fl">0.1</span>,
+                                       <span class="dt">color =</span> <span class="st">&quot; blue&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">addCircleMarkers</span>(<span class="dt">lng =</span> <span class="op">~</span>dropoff_longitude,
+                                       <span class="dt">lat =</span> <span class="op">~</span>dropoff_latitude,
+                                       <span class="dt">radius =</span> <span class="fl">0.1</span>,
+                                       <span class="dt">color =</span> <span class="st">&quot; red&quot;</span>)
+
+<span class="kw">library</span>(htmlwidgets)
+<span class="kw">saveWidget</span>(<span class="dt">widget =</span> sample_coords_map,
+           <span class="dt">file =</span> <span class="st">&quot;sample_coords_map.html&quot;</span>,
+           <span class="dt">selfcontained =</span> <span class="ot">TRUE</span>)
+
+sample_coords_map</code></pre></div>
+<div id="htmlwidget-4cc92fd119f472b9667c" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4cc92fd119f472b9667c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addCircleMarkers","args":[[40.74826,40.72797,40.744236,40.743038,40.774834,40.710716,40.719181,40.719173,40.742744,40.740269,40.753651,40.746517,40.756248,40.709362,40.735058,40.758343,40.768627,40.74979,40.737377,40.763996,40.751293,40.760269,40.733318,40.751762,40.738724,40.737801,40.774837,40.747253,40.767677,40.761105,40.725636,40.727734,40.738842,40.774097,40.773079,40.74947,40.788525,40.76992,40.748978,40.755814,40.743244,40.775467,40.724567,40.749268,40.753689,40.788937,40.770992,40.76696,40.771301,40.716785,40.740833,40.695332,40.758736,40.791328,40.645367,40.760616,40.75853,40.771976,40.764893,40.743042,40.720592,40.743546,40.772362,40.758484,40.774075,40.764973,40.808926,40.749523,40.648499,40.767544,40.644699,40.736027,40.770199,40.733292,40.787022,40.7784,40.750526,40.750072,40.749454,40.735317,40.767071,40.753197,40.709831,40.745266,40.790989,40.723164,40.692696,40.808475,40.775959,40.74712,40.738827,40.766872,40.744263,40.763329,40.749161,40.768051,40.794209,40.739799,40.743141,40.724979,40.745781,40.751297,40.76112,40.770519,40.727528,40.785213,40.731155,40.758305,40.750233,40.762016,40.738667,40.750011,40.761021,40.754864,40.772591,40.748608,40.755264,40.757786,40.768883,40.759956,40.726875,40.745819,40.744896,40.71841,40.742481,40.716084,40.731194,40.645039,40.742096,40.792664,40.779163,40.766949,40.738632,40.738514,40.718166,40.764088,40.749218,40.740166,40.750862,40.789574,40.754463,40.79076,40.726608,40.710999,40.758968,40.76717,40.706184,40.756046,40.778057,40.758003,40.773293,40.747147,40.806919,40.74826,40.741558,40.780434,40.75499,40.740772,40.738659,40.74506,40.737148,40.645275,40.764469,40.756218,40.749615,40.716858,40.750435,40.702629,40.715797,40.74987,40.776001,40.745472,40.747711,40.716827,40.797462,40.72047,40.758385,40.753414,40.771709,40.779278,40.734379,40.644634,40.746548,40.751854,40.732861,40.718071,40.722691,40.788601,40.743999,40.725163,40.750069,40.777058,40.740929,40.749954,40.728962,40.73204,40.774727,40.739735,40.762547,40.744526,40.794483,40.741852,40.784138,40.758511,40.731617,40.726067,40.728653,40.779446,40.726158,40.797436,40.749477,40.740559,40.746868,40.724926,40.773731,40.749908,40.738731,40.798161,40.721268,40.784039,40.736534,40.718616,40.740608,40.775059,40.774086,40.78112,40.735477,40.723068,40.789104,40.725983,40.753983,40.722401,40.735401,40.733162,40.759003,40.732067,40.793514,40.778442,40.784725,40.756508,40.718597,40.740696,40.771015,40.810913,40.756252,40.736759,40.707447,40.761997,40.684196,40.768593,40.734371,40.755802,40.763802,40.740681,40.779652,40.733555,40.719784,40.766033,40.721592,40.725204,40.759247,40.734833,40.713947,40.718731,40.788746,40.741074,40.757454,40.761147,40.783108,40.75993,40.756042,40.77055,40.755787,40.71965,40.759964,40.726147,40.738205,40.757618,40.759247,40.767941,40.749844,40.739777,40.748535,40.757854,40.771179,40.721889,40.764843,40.782028,40.74295,40.763878,40.730106,40.789398,40.743984,40.764122,40.763241,40.732922,40.732738,40.75956,40.75164,40.733829,40.756962,40.726299,40.760609,40.774048,40.644981,40.741615,40.770199,40.756413,40.757748,40.728378,40.771465,40.738148,40.782955,40.756618,40.763763,40.729942,40.720894,40.761806,40.782585,40.759331,40.643791,40.754601,40.744858,40.760311,40.841835,40.761612,40.758442,40.72699,40.777721,40.741058,40.755943,40.765587,40.76564,40.767796,40.710491,40.714298,40.756947,40.738792,40.765991,40.73357,40.727154,40.755356,40.730511,40.714706,40.770149,40.747601,40.770447,40.710342,40.757584,40.76738,40.76207,40.778969,40.729362,40.74411,40.758362,40.783222,40.772358,40.725918,40.752163,40.761318,40.728069,40.780716,40.723995,40.760384,40.776901,40.741497,40.775867,40.745152,40.749294,40.73077,40.775635,40.729504,40.741234,40.750168,40.776005,40.755886,40.784004,40.758301,40.758778,40.780922,40.739429,40.759567,40.743843,40.727219,40.731678,40.729099,40.751621,40.777405,40.755367,40.754353,40.743252,40.768784,40.762428,40.739155,40.728764,40.761852,40.722809,40.756256,40.752003,40.762104,40.76918,40.735146,40.758595,40.76881,40.643967,40.736225,40.771584,40.758255,40.76041,40.730186,40.725098,40.732136,40.74926,40.76619,40.749893,40.778374,40.740868,40.737785,40.724747,40.808319,40.756916,40.769985,40.726181,40.750237,40.742352,40.75153,40.757542,40.751911,40.754665,40.75705,40.759686,40.759548,40.762058,40.738827,40.746689,40.778599,40.723564,40.75351,40.733822,40.746071,40.735432,40.771049,40.726925,40.774616,40.750031,40.789326,40.777596,40.741695,40.777351,40.749977,40.765881,40.736721,40.744919,40.750168,40.753105,40.780136,40.770168,40.741459,40.782543,40.730633,40.787956,40.763893,40.74828,40.719971,40.751877,40.769138,40.746357,40.688431,40.749462,40.776699,40.773582,40.806564,40.779766,40.723892,40.776497,40.751957,40.797043,40.776108,40.766506,40.72414,40.77903,40.75956,40.780327,40.740074,40.73275,40.747837,40.722252,40.766842,40.749138,40.758785,40.769547,40.747383,40.791698,40.807964,40.757683,40.77116,40.742119,40.776665,40.731457,40.756226,40.729557,40.729187,40.771194,40.76112,40.744446,40.710308,40.714008,40.765968,40.738491,40.752361,40.750999,40.750362,40.754383,40.717358,40.764305,40.735287,40.732449,40.767029,40.769901,40.709068,40.735794,40.770538,40.791885,40.759247,40.752651,40.721535,40.782085,40.734093,40.744602,40.749329,40.684711,40.771229,40.732388,40.710861,40.763813,40.770569,40.766773,40.773613,40.754997,40.729786,40.781483,40.767754,40.743153,40.77401,40.763931,40.749817,40.763695,40.758228,40.769909,40.738251,40.773632,40.773975,40.799046,40.703789,40.78019,40.779236,40.767605,40.762344,40.755878,40.752235,40.763565,40.722218,40.723534,40.770405,40.706421,40.737453,40.741993,40.75943,40.763577,40.765381,40.76088,40.762974,40.741093,40.748444,40.744873,40.720882,40.743382,40.773605,40.76247,40.753166,40.738525,40.776955,40.648594,40.806206,40.728661,40.7505,40.776199,40.751793,40.742325,40.758888,40.75946,40.774052,40.754147,40.772343,40.72184,40.727215,40.797142,40.77821,40.741272,40.777195,40.739803,40.771336,40.755596,40.733868,40.778027,40.8032,40.764133,40.749096,40.759064,40.784355,40.747318,40.770645,40.763241,40.733021,40.759678,40.7579,40.680611,40.740345,40.764404,40.733227,40.765572,40.779678,40.738033,40.785442,40.720558,40.783508,40.727493,40.748486,40.758492,40.754597,40.760769,40.746231,40.745361,40.72525,40.756714,40.774002,40.777176,40.720432,40.744534,40.760311,40.768654,40.765747,40.773994,40.74807,40.720505,40.786007,40.75193,40.753475,40.751762,40.762791,40.74448,40.726242,40.726696,40.716557,40.731567,40.760056,40.813774,40.763966,40.758377,40.776455,40.720581,40.777958,40.726326,40.807152,40.787258,40.750683,40.768646,40.763226,40.746506,40.74155,40.773697,40.742035,40.725903,40.743591,40.768311,40.756447,40.759914,40.758717,40.765022,40.757172,40.744026,40.742821,40.745205,40.771637,40.754066,40.738037,40.779362,40.735039,40.746685,40.759315,40.742195,40.702358,40.729626,40.741901,40.750927,40.714844,40.71719,40.746002,40.756798,40.750084,40.723343,40.743858,40.780403,40.760086,40.778961,40.750408,40.810467,40.748146,40.64465,40.786106,40.747704,40.730419,40.776821,40.644775,40.774078,40.768433,40.727901,40.75412,40.76218,40.763302,40.755089,40.752617,40.750866,40.747189,40.765991,40.753784,40.729446,40.768013,40.741791,40.757343,40.756168,40.793053,40.734367,40.750706,40.78867,40.737629,40.734058,40.744186,40.772221,40.731812,40.711845,40.81535,40.737926,40.784897,40.76136,40.736755,40.760967,40.750263,40.740646,40.752632,40.775936,40.738136,40.729183,40.75819,40.792248,40.772064,40.727821,40.762081,40.710983,40.761856,40.847912,40.761795,40.69471,40.736656,40.721565,40.768295,40.751881,40.7365,40.743641,40.739944,40.757877,40.774975,40.779785,40.794937,40.756889,40.732521,40.642746,40.747494,40.743671,40.751114,40.73597,40.742027,40.758472,40.749561,40.782143,40.779461,40.738464,40.797241,40.766777,40.766132,40.756569,40.758198,40.746441,40.751186,40.74324,40.751869,40.729862,40.780151,40.737339,40.750088,40.741463,40.777561,40.75441,40.777203,40.762863,40.783474,40.777973,40.763226,40.723785,40.75581,40.766571,40.766613,40.762653,40.757969,40.744087,40.769669,40.79179,40.72065,40.753181,40.77412,40.782951,40.778126,40.710293,40.756905,40.768291,40.709038,40.737202,40.763157,40.762299,40.723495,40.760609,40.771446,40.748985,40.722076,40.783352,40.743786,40.761734,40.761505,40.738804,40.779198,40.722595,40.727638,40.740696,40.755669,40.789101,40.641556,40.782463,40.759926,40.717686,40.755718,40.641396,40.760944,40.72522,40.757202,40.732689,40.731602,40.786205,40.771721,40.774445,40.760826,40.744003,40.76952,40.757645,40.717716,40.739136,40.750874,40.750343,40.780746,40.654549,40.744041,40.731651,40.78336,40.766689,40.744137,40.673267,40.754894,40.769627,40.775818,40.748989,40.765598,40.708275,40.760124,40.772305,40.775394,40.731083,40.726563,40.757282,40.776051,40.715187,40.74493,40.772469,40.780495,40.721653,40.780632,40.761826,40.748768,40.711609,40.745148,40.714539,40.765488,40.721912,40.778851,40.738171,40.771965,40.719189,40.737206,40.787338,40.786762,40.753365,40.750042,40.731224,40.73867,40.739361,40.78186,40.775471,40.79953,40.717251,40.742203,40.737125,40.704651,40.725964,40.742416,40.784027,40.749329,40.76078,40.745827,40.75967,40.779896,40.773159,40.747787,40.718643,40.760296,40.762398,40.793465,40.759369,40.746876,40.75124,40.773804,40.763363,40.739075,40.773296,40.761654,40.766647,40.78907,40.761391,40.746021,40.740021,40.769665,40.743668,40.762711,40.735752,40.715977,40.726498,40.766197,40.756832,40.736851,40.734653,40.767368,40.762241,40.738838,40.757931,40.759235,40.777664,40.77652,40.762657,40.741264,40.762508,40.771027,40.769104,40.759781,40.73119,40.753239,40.763676,40.757996,40.759064,40.767269,40.734776,40.778744,40.761303,40.752201,40.76112,40.775028,40.813789,40.76223,40.783974,40.754234,40.785995,40.753593,40.763908,40.758179,40.732475,40.783298,40.747147,40.773949,40.7575,40.718056,40.753723,40.756496,40.807163,40.751911],[-73.992493,-73.984993,-74.006577,-73.996323,-73.963074,-74.01545,-74.009071,-74.005165,-74.000298,-74.008003,-73.992714,-73.994293,-73.967552,-74.016907,-73.991814,-73.992165,-73.958046,-73.981285,-73.992546,-73.981155,-73.989479,-73.984428,-74.002602,-73.99366,-74.003609,-73.992455,-73.951035,-73.989807,-73.982704,-73.986252,-74.005547,-73.995018,-73.983177,-73.872864,-73.885429,-74.002869,-73.952995,-73.960449,-73.986977,-73.973038,-73.992638,-73.953568,-73.984367,-73.979637,-73.977592,-73.955109,-73.967667,-73.953644,-73.987625,-73.989296,-73.987801,-73.994003,-73.975494,-73.974052,-73.78154,-73.971626,-73.977074,-73.959602,-73.972588,-73.98008,-73.989471,-73.920502,-73.96286,-73.969246,-73.87307,-73.982277,-73.959587,-73.991745,-73.78511,-73.981773,-73.782127,-73.979027,-73.98201,-73.999725,-73.955673,-73.948303,-73.987122,-73.991455,-73.999199,-73.998245,-73.979782,-73.996391,-74.007179,-73.992348,-73.943314,-74.006195,-73.993195,-73.948868,-73.989967,-73.974258,-74.006393,-73.967072,-73.995613,-73.976738,-73.995621,-73.986397,-73.974022,-73.98674,-73.980247,-73.995628,-73.999359,-73.975311,-73.969505,-73.966385,-74.005363,-73.979103,-73.952393,-73.977547,-73.987411,-73.98629,-73.983528,-73.987724,-73.994446,-73.972656,-73.966904,-73.969772,-73.971313,-73.974335,-73.98735,-73.969704,-74.002899,-73.983002,-73.998764,-74.000839,-73.980354,-73.986885,-73.982689,-73.782143,-73.977936,-73.973419,-73.98127,-73.990196,-73.991554,-73.985397,-74.002907,-73.984764,-73.991966,-74.005775,-73.974724,-73.943214,-73.99176,-73.972816,-74.007347,-73.950958,-73.986069,-73.968475,-73.925644,-73.974297,-73.954491,-73.981659,-73.960091,-73.991211,-73.961052,-73.992645,-73.987564,-73.981842,-73.977646,-74.00518,-73.986954,-73.948814,-73.997009,-73.776787,-73.977318,-73.967735,-73.998901,-74.009216,-73.994621,-74.012268,-73.994759,-73.994316,-73.959839,-73.978256,-73.982887,-73.997711,-73.937538,-73.987213,-73.976929,-73.966568,-73.988945,-73.957779,-73.983818,-73.782089,-73.997536,-73.942802,-73.981552,-73.986237,-73.988174,-73.970772,-73.981552,-74.003021,-73.972076,-73.961716,-73.994217,-74.002571,-73.987366,-73.991371,-73.954041,-74.002602,-73.982239,-73.985291,-73.966331,-73.99733,-73.973915,-73.970848,-74.000999,-73.980492,-73.98764,-73.952927,-73.991875,-73.96994,-73.9776,-74.006325,-73.990074,-73.992317,-73.963913,-73.991577,-73.995888,-73.969444,-73.986794,-73.97406,-73.98465,-73.988045,-74.006752,-73.953835,-73.872871,-73.954399,-73.979523,-73.988907,-73.97599,-74.005783,-73.989258,-73.997231,-73.992996,-73.865952,-73.986816,-74.000771,-73.951736,-73.954384,-73.954056,-73.974808,-74.003395,-74.008202,-73.959709,-73.952675,-73.964363,-73.997063,-74.005829,-73.97831,-73.997276,-73.958755,-74.002846,-73.977303,-73.973267,-74.005592,-73.98156,-73.995491,-73.995216,-73.971863,-73.997353,-73.992355,-73.965508,-73.975006,-74.008728,-73.983345,-73.977539,-73.984375,-73.998253,-73.966995,-73.970901,-73.966934,-73.991333,-73.980118,-73.97525,-73.99427,-73.995636,-73.991852,-74.004128,-73.976707,-73.972626,-73.961906,-73.992355,-74.002434,-73.985054,-73.986084,-73.950699,-73.957924,-73.979027,-73.955849,-73.981026,-73.996239,-73.955109,-73.978935,-73.988686,-73.965042,-73.983116,-73.98571,-73.993675,-73.973961,-73.975586,-73.9907,-73.972313,-74.005646,-73.969414,-73.873291,-73.781174,-74.001221,-73.959717,-73.974556,-73.986549,-74.005287,-73.961388,-73.997711,-73.95108,-73.964447,-73.973236,-73.991486,-73.998199,-73.959351,-73.975075,-73.984711,-73.790062,-73.96981,-73.981003,-73.989174,-73.939354,-73.966606,-73.9776,-73.98391,-73.985802,-73.997887,-73.990868,-73.987549,-73.979942,-73.965828,-74.015762,-74.015442,-73.986397,-73.992554,-74.023048,-73.99234,-74.005775,-73.968178,-73.980148,-73.961189,-73.951744,-74.004181,-73.991096,-74.01651,-73.973656,-73.996155,-73.978256,-73.986771,-73.987587,-73.983727,-73.970322,-73.945122,-73.982224,-73.994766,-73.980774,-73.994682,-73.994431,-73.946152,-73.996262,-73.997009,-73.959366,-73.997536,-73.952698,-73.980972,-73.976913,-74.001595,-73.947517,-73.989647,-74.00811,-73.991463,-73.958252,-73.96785,-73.954643,-73.966019,-73.98938,-73.952591,-73.979881,-73.961349,-74.006401,-73.988708,-74.000946,-73.992249,-73.939705,-73.950737,-73.968132,-73.977951,-73.982964,-73.984047,-73.997276,-73.987595,-74.002556,-73.973999,-73.985893,-73.967506,-73.97554,-73.960045,-73.862839,-74.006195,-73.989578,-73.862823,-73.791,-73.987343,-73.950905,-73.992844,-73.975594,-73.991798,-74.005684,-73.988228,-73.969566,-73.968002,-73.991524,-73.985603,-74.001755,-73.992859,-73.993973,-73.94503,-73.972198,-73.983017,-74.0056,-73.974495,-73.977661,-73.97554,-73.989517,-73.978638,-73.984413,-73.971825,-73.995338,-73.98571,-73.960106,-74.00808,-74.001106,-73.982025,-73.979164,-73.977585,-73.980576,-74.000237,-73.998154,-73.979774,-74.003014,-73.980835,-73.991379,-73.978317,-73.974899,-73.985214,-73.950462,-73.987244,-73.970734,-73.981522,-73.980942,-73.976974,-73.97879,-73.956963,-73.962311,-73.952927,-73.944107,-73.980743,-73.971107,-73.968956,-74.003639,-74.002739,-73.970535,-73.981079,-73.971542,-73.989288,-73.976845,-73.982239,-73.992775,-73.942459,-73.96183,-74.004646,-73.948357,-73.978416,-73.972054,-73.987328,-73.983299,-73.997467,-73.981697,-73.995949,-73.975533,-73.995438,-73.999855,-74.000389,-73.986702,-73.967201,-73.992149,-73.918571,-73.980934,-73.993286,-73.964958,-73.964127,-73.977592,-73.964035,-73.989021,-73.957779,-73.994347,-73.989609,-73.978111,-73.984047,-73.98214,-73.975204,-73.98542,-74.015472,-73.997139,-73.957558,-73.980415,-73.979507,-73.991013,-73.983284,-73.980064,-73.958244,-73.966461,-73.994209,-73.987808,-73.968666,-73.960938,-73.996826,-73.99791,-73.98748,-73.965057,-73.974823,-73.975258,-73.983627,-73.957916,-73.995201,-73.984177,-73.995499,-73.978325,-73.95639,-73.999176,-74.016014,-73.958862,-73.987419,-73.953705,-73.951782,-73.985062,-74.003876,-73.946198,-73.95578,-73.98407,-73.874474,-73.968491,-73.991203,-73.996155,-73.98555,-73.966614,-73.991989,-73.870811,-73.873032,-73.962929,-74.014366,-73.955254,-73.955803,-73.981285,-73.984184,-73.979019,-73.993027,-73.965355,-73.997055,-73.992912,-73.991714,-74.009239,-73.997154,-73.983093,-73.984352,-73.97377,-73.984657,-73.994698,-73.968155,-73.978554,-73.988586,-73.9916,-73.997849,-73.999664,-73.952225,-73.974319,-73.994698,-73.980118,-73.982887,-73.783325,-73.965324,-74.000488,-73.992035,-73.979645,-73.994156,-73.974586,-73.969345,-73.985046,-73.872948,-73.98362,-73.985413,-73.983437,-73.991402,-73.949104,-73.978264,-74.005089,-73.978973,-73.991066,-73.959656,-73.979538,-73.986801,-73.954491,-73.967285,-73.973206,-73.975616,-73.96978,-73.977493,-73.997299,-73.95694,-73.962776,-73.975266,-73.958855,-73.970871,-73.994652,-73.994568,-73.95845,-74.008575,-73.982132,-73.957695,-74.004189,-73.946381,-73.987129,-73.947739,-74.006165,-73.988884,-73.981598,-73.971825,-73.987068,-73.988632,-73.992424,-73.99543,-73.990463,-73.873222,-73.982605,-74.010124,-73.980988,-73.976135,-73.982063,-73.963478,-73.959633,-73.989136,-74.009369,-73.97953,-73.975624,-73.972847,-73.986801,-73.989555,-74.004471,-73.995796,-73.999229,-73.944763,-74.001007,-73.964661,-73.959724,-73.981583,-73.976097,-73.949753,-74.010185,-73.963142,-73.996071,-73.946022,-73.954308,-73.978546,-73.955429,-73.969337,-73.986267,-74.006668,-73.95977,-74.004707,-74.007919,-73.985596,-73.98555,-73.990089,-73.985489,-73.968185,-73.981262,-73.983749,-73.973236,-74.000168,-73.978546,-73.959167,-73.96917,-73.996567,-73.947472,-74.006531,-74.001434,-73.978806,-73.980736,-74.011192,-73.98806,-73.977928,-73.974396,-73.996887,-73.982956,-73.971832,-73.985657,-73.991547,-73.999802,-73.981514,-73.946739,-73.972496,-73.956047,-73.987282,-73.958458,-73.973236,-73.782089,-73.957085,-74.002739,-73.980476,-73.982094,-73.781631,-73.874565,-73.955582,-73.994614,-73.975929,-74.001419,-73.982819,-73.969734,-73.985985,-74.005676,-73.993431,-73.963112,-73.969315,-73.98423,-73.964035,-73.993622,-73.984467,-73.982903,-73.963654,-73.990875,-73.978653,-73.977219,-73.987747,-73.986557,-73.987854,-73.966591,-73.985207,-74.007195,-73.958755,-73.996216,-73.969795,-73.979378,-73.993309,-73.994408,-73.998489,-74.002457,-73.98642,-73.964485,-73.998528,-73.981407,-73.983421,-73.952507,-73.952538,-73.985184,-73.963356,-73.96357,-73.971802,-73.939735,-73.995453,-73.990601,-73.977859,-73.983711,-73.969978,-73.973595,-73.98893,-73.988342,-74.002396,-73.969345,-73.947769,-73.950432,-73.971825,-73.969971,-73.989967,-73.788506,-73.976707,-73.982979,-73.979134,-73.98925,-73.996574,-73.992783,-73.981781,-73.975563,-73.962059,-74.002213,-73.968063,-73.95993,-73.953835,-73.988892,-73.993141,-74.008316,-73.994118,-73.993881,-73.985329,-74.000603,-73.980644,-73.98877,-73.991013,-73.993896,-73.95929,-73.986763,-73.978363,-73.961967,-73.979286,-73.961006,-73.98613,-73.996582,-73.990654,-73.964836,-73.986839,-73.998642,-73.972862,-73.983292,-73.863693,-73.941589,-73.997581,-73.966965,-73.874657,-73.95536,-73.954498,-74.009758,-73.967316,-73.984543,-74.014236,-73.988365,-73.983109,-73.965958,-73.985481,-73.994804,-73.96138,-73.9888,-73.985512,-73.97451,-73.9832,-73.988892,-73.982857,-74.003342,-73.955475,-73.988838,-74.001518,-73.985657,-73.988358,-73.975639,-73.788841,-73.951134,-73.972458,-73.991203,-73.990982,-73.788879,-73.986717,-73.981171,-74.001015,-73.98761,-73.982422,-73.979553,-73.977646,-73.963776,-73.969307,-73.995613,-73.984825,-73.973694,-73.957764,-74.003044,-73.998589,-73.977112,-73.956184,-73.788048,-73.924103,-74.001175,-73.947762,-73.962906,-73.985825,-73.982956,-73.973175,-73.982323,-73.954697,-73.976662,-73.954582,-74.017143,-73.995384,-73.960716,-73.95359,-73.985741,-73.995842,-73.963455,-73.979645,-73.951584,-73.975731,-73.981361,-73.98143,-74.005287,-73.98008,-73.968513,-73.992226,-74.010399,-73.993164,-73.999611,-73.97596,-73.987411,-73.982178,-73.988518,-73.979195,-74.004967,-73.984329,-73.974136,-73.952751,-73.985573,-73.991562,-73.988449,-73.987175,-73.990608,-73.955864,-73.978203,-73.970146,-73.989899,-73.982887,-74.000778,-73.942741,-73.994621,-73.99321,-73.980003,-73.991798,-73.96093,-73.994362,-73.9757,-73.954117,-73.982185,-73.98526,-74.002525,-73.980194,-73.986443,-73.97271,-73.972923,-73.981667,-73.990807,-73.871025,-73.985428,-73.982986,-73.982986,-73.979034,-73.979309,-73.970329,-73.994164,-73.98455,-73.986633,-73.957794,-73.920868,-73.9291,-73.97937,-74.008827,-73.994217,-73.963585,-73.990105,-73.99559,-74.002029,-73.990044,-73.986221,-73.987373,-73.974586,-73.9841,-73.95874,-73.96209,-73.98336,-73.983559,-73.986244,-73.959602,-73.981941,-73.982651,-73.982628,-74.003677,-73.982849,-73.966339,-73.980362,-73.984024,-73.99939,-73.984924,-73.986717,-73.977661,-73.979431,-73.963211,-73.956032,-73.974564,-73.954643,-73.980255,-73.951424,-73.992523,-73.964867,-73.988571,-74.001678,-73.956757,-73.993416,-73.873016,-73.9739,-73.999825,-73.979729,-73.988098,-73.964325,-73.991409],0.1,null,null,{"interactive":true,"className":"","stroke":true,"color":" blue","weight":5,"opacity":0.5,"fill":true,"fillColor":" blue","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[40.744507,40.743504,40.779957,40.758598,40.753647,40.74855,40.711304,40.741524,40.767372,40.721638,40.76318,40.709881,40.776993,40.749268,40.751141,40.76067,40.74371,40.755062,40.653759,40.783817,40.76305,40.744026,40.742512,40.763393,40.74662,40.713871,40.743828,40.739906,40.643082,40.77356,40.731499,40.798717,40.763313,40.757435,40.766808,40.762352,40.803307,40.773308,40.779232,40.75021,40.791275,40.760612,40.717709,40.783173,40.774666,40.809914,40.759987,40.738087,40.803905,40.755428,40.771774,40.690128,40.765575,40.791725,40.744091,40.755077,40.730606,40.762527,40.757748,40.750805,40.726032,40.764896,40.784248,40.778362,40.750381,40.740833,40.777359,40.779858,40.755505,40.795963,40.746132,40.755707,40.755756,40.730091,40.747833,40.755959,40.711716,40.736336,40.734364,40.738468,40.753124,40.74929,40.751331,40.791901,40.782223,40.679771,40.693504,40.80022,40.735241,40.750195,40.706928,40.77676,40.755821,40.773937,40.759563,40.689316,40.810425,40.719463,40.779221,40.726646,40.71524,40.750591,40.768703,40.778011,40.768139,40.770061,40.671967,40.752258,40.73177,40.762016,40.75214,40.730736,40.729149,40.74601,40.762978,40.736698,40.765285,40.770901,40.713131,40.752346,40.771496,40.647411,40.731537,40.727341,40.754501,40.721428,40.638691,40.763184,40.734081,40.732498,40.766098,40.727619,40.764801,40.741341,40.717552,40.764427,40.770081,40.746372,40.718521,40.759247,40.758705,40.780235,40.752316,40.771568,40.752552,40.761955,40.695892,40.763512,40.777538,40.73941,40.745903,40.763416,40.779537,40.743816,40.77821,40.765053,40.751877,40.749485,40.728207,40.74506,40.723911,40.77388,40.748035,40.739754,40.752846,40.762672,40.759201,40.71629,40.758415,40.764893,40.764683,40.767063,40.750534,40.717381,40.790737,40.72047,40.750389,40.758717,40.772774,40.78524,40.746605,40.757904,40.745564,40.760395,40.845806,40.770828,40.752312,40.75742,40.734688,40.708958,40.776127,40.772457,40.744839,40.741669,40.758591,40.718868,40.764675,40.726963,40.750755,40.795269,40.773453,40.727043,40.761887,40.764423,40.720139,40.739517,40.684788,40.780731,40.74519,40.766571,40.779678,40.705143,40.766685,40.724926,40.78437,40.741467,40.752041,40.774204,40.720192,40.777245,40.711006,40.752289,40.751015,40.761478,40.752991,40.762405,40.755653,40.733036,40.745632,40.715385,40.747227,40.711697,40.655712,40.802357,40.756355,40.755489,40.739895,40.78669,40.757103,40.751377,40.760006,40.740696,40.764076,40.770561,40.756596,40.767502,40.719151,40.778313,40.675014,40.76524,40.745426,40.762878,40.761307,40.657761,40.786987,40.745907,40.746117,40.787781,40.750099,40.728127,40.753967,40.715588,40.695354,40.731922,40.746571,40.728073,40.750401,40.760662,40.781952,40.760639,40.758842,40.755531,40.777111,40.741966,40.765759,40.724857,40.729656,40.755081,40.740002,40.779026,40.739082,40.787449,40.749607,40.771999,40.799175,40.674763,40.750237,40.786247,40.740738,40.745628,40.711868,40.788097,40.723236,40.725624,40.768539,40.747025,40.736874,40.722836,40.729797,40.733368,40.772709,40.809086,40.753399,40.76144,40.764038,40.749119,40.776577,40.760071,40.764374,40.685909,40.768665,40.706352,40.784683,40.776775,40.757702,40.762592,40.882381,40.757557,40.77676,40.765266,40.764103,40.790771,40.755135,40.768436,40.781841,40.8032,40.759449,40.706532,40.764336,40.749069,40.766788,40.75209,40.777508,40.753643,40.748459,40.725292,40.742455,40.749184,40.765991,40.755985,40.750092,40.725597,40.740486,40.702503,40.788635,40.750278,40.762459,40.731075,40.739861,40.759972,40.761032,40.791069,40.727917,40.721416,40.716183,40.784832,40.783314,40.761417,40.762383,40.79528,40.728069,40.755882,40.741413,40.733051,40.747353,40.721592,40.773331,40.751347,40.750542,40.733864,40.763943,40.688976,40.74398,40.760746,40.77227,40.728481,40.766846,40.733498,40.750069,40.756802,40.752983,40.707733,40.744301,40.74847,40.739223,40.690708,40.751621,40.753448,40.75568,40.747585,40.75061,40.728157,40.737335,40.750008,40.763096,40.702831,40.74662,40.727539,40.742149,40.787289,40.788532,40.752544,40.749733,40.723652,40.756657,40.823246,40.761967,40.742882,40.762543,40.765041,40.742264,40.745296,40.758911,40.755642,40.78746,40.777599,40.743782,40.729885,40.748356,40.814342,40.764671,40.77634,40.692177,40.778072,40.681763,40.762157,40.754902,40.71804,40.624798,40.743378,40.774242,40.762726,40.777977,40.716774,40.755749,40.75769,40.727322,40.763851,40.750462,40.776718,40.733788,40.786381,40.755615,40.757484,40.723286,40.779915,40.77515,40.78157,40.770947,40.755642,40.729279,40.73259,40.764557,40.749115,40.772552,40.790737,40.766155,40.760403,40.758438,40.787842,40.765339,40.787853,40.761597,40.755089,40.755611,40.819492,40.759598,40.713882,40.734653,40.75433,40.786301,40.81065,40.807838,40.706985,40.727676,40.758362,40.765324,40.749939,40.796013,40.730568,40.770992,40.73119,40.757229,40.734615,40.75655,40.733959,40.72678,40.851665,40.755062,40.777031,40.734936,40.774719,40.79137,40.747761,40.774464,40.761967,40.753635,40.74395,40.706589,40.759731,40.732166,40.750618,40.761227,40.724026,40.758625,40.741444,40.738075,40.763691,40.757912,40.746353,40.768448,40.735371,40.709389,40.782314,40.740974,40.764866,40.760471,40.722904,40.763618,40.750519,40.775658,40.775826,40.78014,40.769691,40.770512,40.721878,40.768528,40.755241,40.688053,40.745567,40.661861,40.728642,40.721416,40.754387,40.785522,40.791641,40.759342,40.751698,40.761196,40.737194,40.79842,40.752872,40.75692,40.760902,40.768291,40.758041,40.772091,40.749828,40.772472,40.762726,40.736526,40.758224,40.799221,40.714233,40.761757,40.764671,40.750229,40.703121,40.663246,40.745655,40.761662,40.764832,40.728226,40.745144,40.722473,40.725887,40.755379,40.7565,40.713047,40.787224,40.882961,40.777203,40.729748,40.760475,40.774639,40.724468,40.734779,40.778164,40.71331,40.737404,40.703957,40.784279,40.736542,40.756195,40.764149,40.750443,40.739559,40.768894,40.73035,40.753284,40.713825,40.785248,40.751842,40.75967,40.722054,40.76054,40.828957,40.766781,40.722855,40.755894,40.720535,40.758347,40.746094,40.741516,40.768539,40.803165,40.742901,40.756355,40.749691,40.775284,40.767632,40.724655,40.756878,40.767056,40.77821,40.722813,40.689808,40.725559,40.774967,40.713989,40.765572,40.758041,40.768978,40.752113,40.729721,40.776272,40.739964,40.761662,40.756058,40.757881,40.76371,40.740292,40.731972,40.738056,40.764107,40.853714,40.785618,40.726357,40.730633,40.756687,40.739201,40.790096,40.745998,40.743645,40.728226,40.776718,40.764271,40.762718,40.753933,40.758106,40.769524,40.753185,40.748329,40.741417,40.735901,40.755829,40.844612,40.717884,40.754929,40.784794,40.782402,40.764889,40.755508,40.799202,40.769367,40.732674,40.775097,40.748859,40.730991,40.766483,40.774174,40.769585,40.74398,40.740952,40.74007,40.758781,40.762894,40.779671,40.758301,40.756283,40.757866,40.768002,40.766155,40.783169,40.764351,40.727272,40.70211,40.730606,40.821552,40.753258,40.748997,40.750927,40.701595,40.757946,40.756012,40.681416,40.755707,40.757927,40.753609,40.72924,40.771225,40.75032,40.796124,40.749043,40.766258,40.76495,40.725178,40.754169,40.713917,40.777279,40.788586,40.727177,40.740059,40.693386,40.619141,40.759495,40.726032,40.744125,40.76136,40.791367,40.739796,40.768551,40.743767,40.721092,40.761127,40.754364,40.709167,40.748821,40.739147,40.765278,40.769901,40.800476,40.71534,40.762707,40.761616,40.771671,40.745472,40.760788,40.774326,40.717827,40.719131,40.761314,40.709682,40.766582,40.748341,40.751442,40.768906,40.763954,40.750591,40.764153,40.761311,40.739803,40.751633,40.770458,40.775517,40.754181,40.737484,40.76646,40.72644,40.763954,40.760979,40.743996,40.70245,40.761494,40.727657,40.779472,40.756897,40.70591,40.755188,40.751438,40.758446,40.764118,40.760876,40.768414,40.755009,40.716343,40.751919,40.749683,40.758125,40.735077,40.750015,40.755676,40.764606,40.767193,40.791187,40.755417,40.731415,40.814873,40.726238,40.723934,40.777794,40.73241,40.708286,40.77309,40.749153,40.751068,40.707649,40.787846,40.717693,40.75016,40.74947,40.763969,40.755203,40.728436,40.783535,40.782158,40.780457,40.773563,40.750145,40.764854,40.77404,40.733051,40.754505,40.749519,40.785431,40.749821,40.733757,40.716557,40.761711,40.846512,40.76062,40.761398,40.741314,40.752182,40.726082,40.756256,40.744793,40.667526,40.776012,40.714832,40.776878,40.742138,40.772266,40.743095,40.773842,40.764698,40.758942,40.750786,40.783466,40.789684,40.717472,40.758247,40.787682,40.772926,40.805439,40.675468,40.729755,40.715252,40.704861,40.729939,40.779945,40.755901,40.729389,40.749966,40.747299,40.738449,40.784351,40.763195,40.760162,40.729836,40.749424,40.763645,40.840485,40.721516,40.748787,40.802227,40.753006,40.763866,40.717758,40.787182,40.739578,40.718582,40.778507,40.744137,40.631691,40.754768,40.763058,40.763992,40.696587,40.77618,40.765579,40.848206,40.740707,40.753975,40.675503,40.727234,40.735214,40.764835,40.739906,40.728035,40.783543,40.771175,40.74033,40.810902,40.726936,40.740002,40.719318,40.695259,40.727165,40.771599,40.711662,40.795353,40.731377,40.771446,40.750961,40.727005,40.805634,40.780102,40.763145,40.760563,40.741524,40.767265,40.775616,40.77779,40.775497,40.788345,40.714901,40.767063,40.767792,40.705086,40.745068,40.775768,40.762398,40.757809,40.770054,40.741154,40.753349,40.762447,40.7663,40.764786,40.749706,40.803272,40.783821,40.809673,40.784859,40.713646,40.740688,40.745678,40.803177,40.743786,40.773464,40.74902,40.767502,40.75111,40.716061,40.740356,40.733437,40.7635,40.759109,40.733749,40.720718,40.719501,40.778458,40.760235,40.758877,40.725746,40.72176,40.759258,40.749744,40.729214,40.752598,40.774014,40.761826,40.769787,40.770569,40.740597,40.758331,40.778599,40.744869,40.752747,40.767384,40.756008,40.846165,40.776646,40.753468,40.82571,40.719398,40.576,40.76757,40.728107,40.738956,40.79858,40.805412,40.716953,40.764557,40.750141,40.789772,40.770367,40.770676,40.772339,40.770569,40.772663,40.766026,40.646786,40.744572,40.728024,40.749886,40.756817,40.768204,40.735165],[-73.983894,-73.979797,-73.980751,-73.993408,-73.972229,-73.98027,-74.014984,-73.993851,-73.968437,-74.009949,-73.974731,-74.009956,-73.904961,-74.003136,-73.978561,-74.002602,-73.983116,-73.974281,-73.955704,-73.954628,-73.999619,-73.999367,-73.995895,-73.985344,-73.995087,-74.014664,-73.97934,-74.005096,-73.78978,-73.982063,-74.001236,-73.961647,-73.971764,-73.971619,-73.889687,-73.977989,-73.964661,-73.948822,-73.984856,-73.983727,-73.973663,-73.967125,-74.0158,-73.954819,-73.990211,-73.958725,-73.975288,-73.97744,-73.963005,-73.973221,-73.982903,-73.962524,-73.964417,-73.975121,-73.927116,-73.965157,-73.976013,-73.978706,-73.976753,-73.97477,-73.983269,-73.955734,-73.956329,-73.955208,-73.979439,-73.986053,-73.95414,-73.961639,-73.991333,-73.969032,-73.985054,-73.989136,-73.979111,-73.993614,-73.989159,-73.961716,-73.953873,-73.974663,-73.986572,-73.982086,-73.970421,-73.988144,-73.976311,-73.972076,-73.948738,-73.965904,-73.943008,-73.964851,-73.991852,-73.991882,-74.01593,-73.955482,-74.001839,-73.954788,-73.927055,-74.18425,-73.961838,-74.004402,-73.988838,-73.986549,-73.991707,-73.990967,-73.992706,-73.962051,-73.862259,-73.96447,-73.964287,-73.996346,-73.985443,-73.98629,-73.984901,-73.990463,-73.993713,-73.988609,-73.973076,-73.974518,-73.957756,-73.865601,-74.009285,-73.975082,-73.982391,-73.788719,-74.003067,-73.98658,-73.971001,-73.9972,-73.785896,-73.95916,-73.983551,-73.97448,-73.965782,-73.999214,-73.969452,-73.975609,-73.991081,-73.98494,-73.951378,-73.990395,-74.007011,-73.970398,-73.975296,-73.961296,-74.003555,-73.953033,-73.975204,-73.968292,-73.952644,-73.973946,-73.975044,-73.98056,-73.970322,-73.985214,-73.957855,-73.998985,-73.98764,-73.96611,-73.993134,-73.98848,-73.988007,-73.948814,-73.998421,-73.948013,-73.988861,-73.992683,-73.980087,-74.000084,-73.984154,-74.01059,-73.988861,-73.970772,-73.917641,-73.983543,-73.990776,-74.001488,-73.972343,-73.987213,-73.983337,-73.918411,-73.958366,-73.934891,-73.97757,-73.988998,-73.984459,-73.961807,-73.942551,-73.865456,-73.995659,-73.975937,-73.994247,-74.005669,-73.98793,-73.960594,-73.991539,-73.984001,-73.987648,-74.004547,-73.956306,-73.980263,-73.990746,-73.965714,-73.989151,-73.993896,-73.970779,-73.985115,-73.983643,-73.984764,-73.962807,-73.946831,-73.985756,-73.982399,-73.976082,-74.01088,-73.95356,-73.992317,-73.956139,-73.987503,-73.976563,-73.872452,-73.947456,-73.943245,-74.003754,-73.986359,-74.005714,-73.963799,-73.97657,-73.963097,-73.976898,-74.006416,-73.999168,-74.005234,-73.993454,-73.951225,-73.959198,-73.931877,-73.970757,-73.989754,-73.986465,-73.948196,-73.973839,-73.993408,-73.976189,-74.008202,-73.976334,-73.865051,-73.989906,-73.959679,-73.990715,-73.962555,-73.976837,-73.96595,-73.998375,-73.976227,-73.983917,-73.990028,-73.979355,-73.986748,-73.988625,-73.975166,-74.00808,-73.986191,-73.964508,-74.012978,-73.949486,-73.982193,-73.979645,-74.005409,-73.994682,-73.997894,-73.947258,-73.97551,-73.999855,-73.979027,-73.989014,-73.980652,-73.983551,-73.998405,-73.978355,-73.987526,-73.986336,-73.954117,-73.996445,-73.970192,-73.979416,-73.990173,-73.939232,-73.978432,-73.991371,-73.968529,-73.987518,-74.005615,-73.963058,-73.956123,-73.989677,-73.996712,-73.982544,-73.972984,-73.984398,-74.003456,-74.004868,-74.002838,-73.982384,-73.95932,-73.974602,-73.999542,-73.978111,-73.995682,-73.96418,-73.983856,-73.981979,-73.998734,-73.982208,-74.007706,-73.973618,-73.949631,-73.983528,-73.988739,-73.903984,-73.969185,-73.977119,-73.975357,-73.958656,-73.95182,-73.984161,-73.984657,-73.949265,-73.950249,-73.974892,-74.017738,-73.973236,-73.999374,-73.9972,-73.993431,-73.979202,-73.974258,-73.984268,-74.009285,-73.997643,-74.005478,-74.023048,-73.988068,-73.994804,-74.005737,-73.986015,-73.928848,-73.953178,-73.99482,-73.994263,-73.979301,-74.002586,-73.988358,-73.960838,-73.975334,-74.005646,-74.009361,-73.994835,-73.946793,-73.956909,-73.963905,-73.97216,-73.965813,-73.994431,-73.972908,-73.985512,-73.987038,-73.976936,-74.010086,-73.9468,-73.978416,-73.999428,-73.999374,-73.958412,-73.960373,-74.007126,-73.986374,-73.961014,-73.989182,-73.957115,-74.002953,-73.994957,-73.970879,-73.989044,-73.958405,-73.993942,-73.98851,-73.989868,-73.965355,-73.939705,-73.975899,-73.986336,-74.003693,-73.975548,-73.988091,-73.98716,-74.005722,-73.973671,-73.800064,-73.993584,-74.002441,-73.989151,-73.967949,-73.95314,-74.00399,-73.991882,-73.846619,-73.992912,-73.950684,-73.970184,-73.994759,-73.969643,-73.953178,-73.991585,-73.978394,-73.962608,-73.974182,-73.954086,-73.984421,-73.999535,-73.990929,-74.005478,-73.936462,-73.976852,-73.956024,-73.989075,-73.954414,-73.968208,-73.973541,-73.975616,-73.97982,-73.999664,-73.980362,-73.988853,-73.982315,-73.948074,-74.013145,-73.971031,-73.977715,-74.000481,-73.97731,-73.980934,-73.959724,-73.986908,-73.977913,-73.973946,-73.986168,-73.977028,-73.956833,-73.989258,-73.979538,-73.963875,-73.984863,-74.000954,-73.995316,-73.956032,-73.991997,-73.949486,-73.950516,-73.969765,-74.002884,-73.972366,-73.969505,-73.954849,-73.975349,-73.994095,-73.984093,-73.982468,-73.944374,-73.961845,-73.933617,-73.988228,-73.972916,-73.955833,-73.944427,-73.963966,-74.016579,-73.981941,-74.000168,-73.972359,-73.995033,-73.968925,-74.001694,-73.979973,-74.008621,-73.977173,-73.99086,-73.974426,-73.981232,-73.977707,-73.933601,-73.991447,-73.897774,-73.992828,-73.951012,-73.95208,-73.975243,-73.872406,-73.971512,-73.973366,-73.983322,-74.002731,-73.978447,-73.984436,-73.9683,-73.976822,-74.003311,-73.975067,-74.006615,-74.008301,-73.988838,-73.969742,-73.95668,-73.982117,-73.994057,-74.014969,-73.95137,-73.983826,-73.955437,-74.002846,-73.998367,-73.973763,-73.94371,-73.986122,-73.956062,-73.957413,-73.981705,-73.961098,-74.004425,-73.965912,-73.984428,-74.183197,-73.993767,-73.983421,-74.004921,-73.987602,-73.972725,-73.947891,-73.974182,-73.973709,-73.975525,-73.999008,-73.984344,-73.95269,-73.976173,-73.985809,-73.998924,-73.956978,-73.989113,-73.990318,-74.002686,-73.958565,-73.83226,-74.001053,-73.985893,-73.962608,-74.008202,-73.97052,-73.964134,-73.991241,-74.014641,-73.982681,-73.978096,-73.96077,-73.973267,-73.98201,-74.000282,-73.987099,-74.008667,-73.97612,-73.975082,-73.990067,-73.979645,-73.903481,-73.986389,-74.005005,-73.973732,-73.918739,-74.005211,-74.002228,-73.95443,-74.011177,-74.00647,-74.013176,-73.980804,-73.988899,-73.968346,-73.973267,-73.973785,-73.989471,-73.988205,-73.992554,-73.981865,-74.012222,-73.971588,-73.976112,-73.97332,-73.995331,-73.980125,-73.941132,-73.978882,-73.982887,-73.972588,-74.000084,-73.978409,-74.001572,-73.997383,-73.958588,-73.944481,-73.988586,-73.973007,-73.977097,-73.953659,-73.968552,-73.994019,-73.974617,-73.987556,-73.960594,-74.00473,-73.95166,-73.997391,-73.963181,-74.006218,-73.982132,-73.965843,-73.961029,-73.98214,-73.978775,-73.947975,-74.005997,-73.960495,-73.971329,-73.977097,-73.982925,-74.005318,-73.99649,-73.990753,-73.982941,-73.90387,-73.97657,-74.003571,-74.006561,-73.941063,-73.985931,-73.966866,-73.955704,-73.980934,-73.998856,-73.952187,-73.955536,-73.972389,-73.984764,-74.000893,-73.974159,-73.985931,-73.988159,-73.981239,-73.993729,-73.986702,-73.940849,-74.012955,-73.973068,-73.948288,-73.980576,-73.972542,-73.983749,-73.952827,-73.988518,-73.999687,-73.949585,-73.969795,-73.996178,-73.988182,-73.952499,-73.952057,-74.006897,-73.99794,-74.005585,-73.979607,-73.970085,-73.954018,-73.972878,-73.994164,-73.945686,-73.955902,-73.962883,-73.982048,-73.994972,-74.006386,-74.010017,-73.992416,-73.950188,-73.989693,-73.976227,-73.989937,-73.90554,-73.981651,-73.972115,-74.000671,-73.974693,-73.981262,-73.994507,-73.984123,-73.979614,-73.974869,-73.949448,-73.972862,-73.991791,-73.96064,-73.996284,-73.968819,-73.834801,-73.978912,-73.953072,-73.99337,-73.995354,-73.988838,-74.037811,-73.970375,-74.009476,-73.991554,-73.981857,-73.972313,-73.998543,-73.98719,-74.007545,-73.838173,-73.971085,-73.977402,-73.922424,-73.974709,-73.976875,-73.983749,-73.864258,-73.957787,-74.0093,-73.973381,-73.97065,-73.956306,-73.982994,-73.998016,-73.959427,-73.989838,-74.008911,-73.995453,-74.010712,-73.910484,-73.971275,-74.007034,-73.987892,-73.978157,-73.980804,-73.998222,-73.99057,-73.99511,-73.982239,-73.865067,-73.947441,-73.995728,-73.996628,-73.982178,-73.991898,-73.981247,-73.998947,-73.973869,-73.984657,-73.970268,-73.99334,-73.977547,-73.969406,-73.966835,-73.971588,-74.006989,-73.920586,-73.909233,-73.992096,-73.985023,-73.972626,-73.961456,-73.993622,-73.991493,-73.966255,-73.991226,-73.973991,-73.976837,-73.980598,-73.968864,-73.968948,-73.972473,-74.005333,-73.942688,-73.998116,-73.981949,-73.908752,-74.003761,-74.01104,-73.989967,-74.00354,-73.974136,-74.001678,-73.97541,-73.998177,-73.971062,-73.988373,-73.988754,-73.97448,-73.98185,-73.95359,-73.972298,-73.95797,-73.951729,-73.990807,-73.987808,-73.963852,-73.99572,-73.979408,-74.002968,-73.978745,-73.979416,-73.990906,-73.963097,-73.960518,-73.931679,-73.971642,-73.978546,-74.007309,-73.974464,-73.97744,-73.979507,-73.98597,-73.993401,-73.956039,-74.009789,-73.982857,-74.00457,-73.981941,-73.974152,-73.959785,-73.962662,-73.977554,-73.978699,-73.948883,-73.954422,-74.009148,-73.973221,-73.953415,-73.916351,-73.939987,-73.969879,-73.986824,-74.01133,-74.01564,-74.004906,-73.954391,-73.978989,-73.98999,-73.995644,-73.974678,-73.989311,-73.971069,-73.978928,-73.972198,-74.005051,-73.983902,-73.975761,-73.944069,-73.946358,-73.984123,-73.964378,-73.985222,-73.976036,-74.014069,-73.973816,-73.995178,-73.813881,-73.958992,-73.985947,-74.038498,-73.982758,-73.978394,-73.954178,-73.983238,-73.961143,-73.954674,-73.93692,-73.986053,-73.85807,-73.947182,-73.999687,-73.982758,-73.984268,-74.007004,-73.871742,-73.976807,-73.965904,-74.002052,-73.962944,-73.987556,-73.974342,-73.99733,-73.95015,-74.006012,-73.982407,-73.943802,-73.973175,-73.991051,-73.981476,-74.004036,-74.00309,-73.961922,-73.957199,-73.973785,-73.980011,-73.993759,-73.962357,-73.964401,-73.955101,-73.978218,-73.978188,-74.005447,-73.969017,-73.861198,-73.942841,-73.98082,-73.982353,-73.984612,-74.000504,-73.961861,-74.005829,-73.973053,-73.972473,-73.977814,-73.95517,-73.987755,-73.966522,-73.979935,-73.962646,-73.967934,-73.959183,-74.007736,-73.993927,-73.948708,-73.979462,-73.95739,-73.98748,-73.959282,-73.990715,-74.008759,-74.004036,-74.008202,-73.959702,-73.962791,-74.002098,-73.992561,-74.012543,-73.954224,-73.971657,-73.981506,-73.988365,-74.009796,-73.981308,-73.991547,-74.002365,-73.984711,-73.870758,-73.970505,-73.960709,-73.96019,-73.992439,-73.966698,-73.954208,-74.004936,-73.98909,-73.953438,-73.994644,-73.938545,-73.955566,-73.986969,-73.94355,-73.991005,-73.976494,-73.982155,-73.992874,-73.927231,-73.959602,-73.962051,-74.012207,-73.962234,-73.988625,-73.940376,-73.964493,-73.954597,-73.953346,-73.991684,-73.952423,-73.955208,-73.790314,-73.974945,-73.982613,-73.991646,-73.982773,-73.98233,-73.980064],0.1,null,null,{"interactive":true,"className":"","stroke":true,"color":" red","weight":5,"opacity":0.5,"fill":true,"fillColor":" red","fillOpacity":0.2},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[40.576,40.882961],"lng":[-74.18425,-73.776787]}},"evals":[],"jsHooks":[]}</script>
+<p>Looks good so far - BUT - the above plot is only for 1000 data points. Interactive Plots, particularly with Maps, can be very memory-greedy; plotting all 15-million trips of data isn’t going to work.</p>
+<p>Here’s one I prepared earlier for 10% of the data (randIDs 1-10). I don’t recommend doing this one yourself - there’s a high chance that it will crash your R-session (and even if it works, it took ~30mins on my machine.)</p>
+<p>(For reference, I’ve included the code below for how to do it for 1% of the data)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(leaflet)
+<span class="kw">library</span>(mapview)
+
+data_sample &lt;-<span class="st"> </span>nyc_taxi_data <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(bad_data_flag <span class="op">==</span><span class="st"> &quot;&quot;</span>, randID <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">select</span>(pickup_latitude,pickup_longitude,dropoff_latitude,dropoff_longitude)
+
+zoom_level &lt;-<span class="st"> </span><span class="dv">4</span>
+map_pix_side &lt;-<span class="st"> </span><span class="dv">256</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span><span class="op">^</span>zoom_level
+my_map &lt;-<span class="st"> </span><span class="kw">leaflet</span>(data_sample, <span class="dt">width=</span>map_pix_side, <span class="dt">height=</span>map_pix_side, <span class="dt">options =</span> <span class="kw">leafletOptions</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">setView</span>(<span class="dt">lng =</span> <span class="dv">0</span>, <span class="dt">lat =</span> <span class="dv">0</span>, <span class="dt">zoom =</span> zoom_level )  <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">addCircleMarkers</span>(<span class="dt">lng =</span> <span class="op">~</span>pickup_longitude,
+                                       <span class="dt">lat =</span> <span class="op">~</span>pickup_latitude,
+                                       <span class="dt">radius =</span> <span class="fl">0.1</span>,
+                                       <span class="dt">color =</span> <span class="st">&quot; blue&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">                      </span><span class="kw">addCircleMarkers</span>(<span class="dt">lng =</span> <span class="op">~</span>dropoff_longitude,
+                                       <span class="dt">lat =</span> <span class="op">~</span>dropoff_latitude,
+                                       <span class="dt">radius =</span> <span class="fl">0.1</span>,
+                                       <span class="dt">color =</span> <span class="st">&quot; red&quot;</span>)
+
+<span class="kw">mapshot</span>(my_map, <span class="dt">file =</span> <span class="st">&quot;images/coords_plot_map.jpg&quot;</span>)</code></pre></div>
+<div class="figure">
+<img src="images/map_trips_randIDs_1_10.png" alt="Plotting 10% of our data onto the map" />
+<p class="caption">Plotting 10% of our data onto the map</p>
+</div>
+<p>It’s clear from this plot that we have something very wrong happening with a reasonable percentage of our GPS coordinates, which means that any Data Science we wish to do with this data will be tainted. We are so close to having a clean dataset - but the final hurdle is often the hardest.</p>
+<p>We have a few options:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>Put a coarse box around New York City. This is quite crude, and will exclude lots of genuine trips that are far from the city.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>We could do something thoughtful and scientific. This will be a lot harder and more time consuming, but in some cases it will be very important to our client to keep as much data as possible. In other cases, particularly in the financial sector, there are often regulartory requirements that prevent us from disregarding data without a rigorous scientific justification. We need to give this some more thought. Let’s save our progress by writing out the cleaned data so far, and workshop some solutions :)</li>
+</ol></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save the data:</span>
+ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>bad_data_flag <span class="op">==</span><span class="st"> &quot;&quot;</span>)
+<span class="kw">saveRDS</span>(nyc_taxi_data[ii,], <span class="dt">file =</span> <span class="st">&quot;data/nyc_taxi_data_clean_medium.rds&quot;</span>)
+
+<span class="co"># Show that data files that exist and their file sizes:</span>
+<span class="co"># </span><span class="al">NOTE</span><span class="co"> - the system command here uses Unix (Mac and Linux) commands and will not work on Windows</span>
+<span class="cf">if</span>(.Platform<span class="op">$</span>OS.type <span class="op">==</span><span class="st"> &quot;unix&quot;</span>) {
+  data_files &lt;-<span class="st"> </span><span class="kw">system</span>(<span class="st">&quot;du -csh data/*&quot;</span>, <span class="dt">intern =</span> T)
+} <span class="cf">else</span> {
+  <span class="co"># For Windows</span>
+  data_files &lt;-<span class="st"> </span><span class="kw">system</span>(<span class="st">&quot;dir data/&quot;</span>, <span class="dt">intern =</span> T)
+}
+
+<span class="kw">cat</span>(<span class="kw">paste0</span>(data_files, <span class="dt">collapse=</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</code></pre></div>
+<hr />
+</div>
+</div>
+</div>
+<div id="going-deeper" class="section level3">
+<h3>Going Deeper</h3>
+<hr />
+<div id="going-deeper-1" class="section level4">
+<h4>Going Deeper</h4>
+<p>Nice Try! … Not giving out the answer just yet … :)</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

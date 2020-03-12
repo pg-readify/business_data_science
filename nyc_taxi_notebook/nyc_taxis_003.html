@@ -1,0 +1,2936 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Paul Goodall - 2/3/2020" />
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Business Problem Solving using Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="nyc_taxis_001.html">Business Case</a>
+</li>
+<li>
+  <a href="nyc_taxis_002.html">Real Data Case</a>
+</li>
+<li>
+  <a href="nyc_taxis_003.html">Cleaning Data (easy)</a>
+</li>
+<li>
+  <a href="nyc_taxis_004.html">Cleaning Data (hard)</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<hr />
+<div id="data-cleaning-easy" class="section level2 tabset tabset-fade tabset-pills">
+<h2>Data Cleaning (easy)</h2>
+<div id="the-data-dictionary" class="section level3">
+<h3>The Data Dictionary</h3>
+<hr />
+<div id="the-data-dictionary-1" class="section level4">
+<h4>The Data Dictionary</h4>
+<p>Let’s go through each variable in-turn, and tackle any problems.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/data_dictionary.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> F)
+
+<span class="kw">show_table</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:left;">
+Variable_Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:left;">
+The drivers medallion number for NYC Yellow Taxi owners. (Medallion costs 1.3m USD)
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:left;">
+The drivers unique license number
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:left;">
+A code indicating the TPEP provider that provided the record; 1= Creative Mobile Technologies LLC; 2= VeriFone Inc
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:left;">
+The final rate code in effect at the end of the trip; 1=Standard rate; 2=JFK; 3=Newark; 4=Nassau or Westchester; 5=Negotiated fare; 6=Group ride
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:left;">
+This flag indicates whether the trip record was held in vehicle memory before sending to the vendor (aka store and forward) because the vehicle did not have a connection to the server; Y= store and forward trip; N= not a store and forward trip
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:left;">
+The date and time when the meter was engaged
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:left;">
+The date and time when the meter was disengaged
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:left;">
+The number of passengers in the vehicle. This is a driver-entered value.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:left;">
+Trip time in seconds
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:left;">
+The elapsed trip distance in miles reported by the taximeter.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:left;">
+Pickup Longitude in degrees
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:left;">
+Pickup Latitude in degrees
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:left;">
+Dropoff Longitude in degrees
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:left;">
+Dropoff Latitude in degrees
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+<td style="text-align:left;">
+A numeric code signifying how the passenger paid for the trip; 1= Credit card 2= Cash; 3= No charge 4= Dispute; 5= Unknown 6= Voided trip
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+<td style="text-align:left;">
+The time-and-distance fare calculated by the meter.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+<td style="text-align:left;">
+Miscellaneous extras and surcharges. Currently this only includes the 0.50 USD and 1 USD rush hour and overnight charges.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+<td style="text-align:left;">
+The 0.50 USD MTA tax that is automatically triggered based on the metered rate in use.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+<td style="text-align:left;">
+Tip amount - This field is automatically populated for credit card tips. Cash tips are not included.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+<td style="text-align:left;">
+Total amount of all tolls paid in trip.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+<td style="text-align:left;">
+The total amount charged to passengers. Does not include cash tips.
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+randID
+</td>
+<td style="text-align:left;">
+A random integer from 1 to 100 to enable repeatable sampling of the data.
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="dates-pickup_datetime-dropoff_datetime" class="section level3">
+<h3>Dates: pickup_datetime, dropoff_datetime</h3>
+<hr />
+<div id="dates-pickup_datetime-dropoff_datetime-1" class="section level4">
+<h4>Dates: pickup_datetime, dropoff_datetime</h4>
+<p>Intuitions to satisfy about the date-times:</p>
+<ul>
+<li><p>these data are from taxi activity in April 2013, so I would expect all dates to meet this criteria</p></li>
+<li><p>unless the taxi happens to be a special Delorean, the pickup time should be before the the dropoff time</p></li>
+</ul>
+<p>Dates are notoriously never in a format that makes sense.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;pickup_datetime&quot;</span>)</code></pre></div>
+<pre><code>## pickup_datetime :
+##  The date and time when the meter was engaged</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;dropoff_datetime&quot;</span>)</code></pre></div>
+<pre><code>## dropoff_datetime :
+##  The date and time when the meter was disengaged</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(nyc_taxi_data<span class="op">$</span>pickup_datetime)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nyc_taxi_data<span class="op">$</span>pickup_datetime, <span class="dt">n=</span><span class="dv">8</span>)</code></pre></div>
+<pre><code>## [1] &quot;2013-04-04 18:47:45&quot; &quot;2013-04-05 07:08:34&quot; &quot;2013-04-04 17:59:50&quot; &quot;2013-04-04 18:12:01&quot; &quot;2013-04-04 20:12:57&quot; &quot;2013-04-05 02:48:11&quot; &quot;2013-04-05 06:16:10&quot; &quot;2013-04-05 06:20:10&quot;</code></pre>
+<p>Since this is a character data type, we cannot do sensible date arithmetic with it, such as the time difference between two timestamps. The calculation below should give us the duration of the trip, by subtracting the pickup timestamp from the dropoff timestamp.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data<span class="op">$</span>dropoff_datetime[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>nyc_taxi_data<span class="op">$</span>pickup_datetime[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## Error in nyc_taxi_data$dropoff_datetime[1] - nyc_taxi_data$pickup_datetime[1] : 
+## non-numeric argument to binary operator</code></pre>
+<p>The above gives an error because R doesn’t know how to subtract characters (words!) in a meaningful way here.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We will make use of the. CHRON library to deal with date-times adequately:</span>
+
+<span class="kw">library</span>(chron)
+
+chartime_to_datetime &lt;-<span class="st"> </span><span class="cf">function</span>(xx){
+  <span class="cf">if</span>(<span class="kw">class</span>(nyc_taxi_data<span class="op">$</span>dropoff_datetime)[<span class="dv">1</span>] <span class="op">==</span><span class="st"> &quot;character&quot;</span>) {
+    <span class="kw">chron</span>(<span class="dt">dates=</span><span class="kw">substr</span>(xx,<span class="dv">1</span>,<span class="dv">10</span>),<span class="dt">times=</span><span class="kw">substr</span>(xx,<span class="dv">12</span>,<span class="dv">20</span>), <span class="dt">format=</span><span class="kw">c</span>(<span class="dt">dates=</span><span class="st">&#39;Y-m-d&#39;</span>, <span class="dt">times=</span><span class="st">&#39;h:m:s&#39;</span>), <span class="dt">out.format=</span><span class="kw">c</span>(<span class="dt">dates=</span><span class="st">&#39;yy-m-d&#39;</span>,<span class="dt">times=</span><span class="st">&#39;h:m:s&#39;</span>))
+  } <span class="cf">else</span> {
+    xx
+  }
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data<span class="op">$</span>pickup_datetime  &lt;-<span class="st"> </span><span class="kw">chartime_to_datetime</span>(nyc_taxi_data<span class="op">$</span>pickup_datetime)
+nyc_taxi_data<span class="op">$</span>dropoff_datetime &lt;-<span class="st"> </span><span class="kw">chartime_to_datetime</span>(nyc_taxi_data<span class="op">$</span>dropoff_datetime)</code></pre></div>
+<p>Check the new data type and the arithmetic capabilities:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(nyc_taxi_data<span class="op">$</span>pickup_datetime)</code></pre></div>
+<pre><code>## [1] &quot;chron&quot; &quot;dates&quot; &quot;times&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nyc_taxi_data<span class="op">$</span>pickup_datetime)</code></pre></div>
+<pre><code>## [1] (2013-Apr-04 18:47:45) (2013-Apr-05 07:08:34) (2013-Apr-04 17:59:50) (2013-Apr-04 18:12:01) (2013-Apr-04 20:12:57) (2013-Apr-05 02:48:11)</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dt1 &lt;-<span class="st"> </span>nyc_taxi_data<span class="op">$</span>dropoff_datetime[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>nyc_taxi_data<span class="op">$</span>pickup_datetime[<span class="dv">1</span>]
+
+dt1</code></pre></div>
+<pre><code>## [1] 00:12:40</code></pre>
+<p>Excellent, now it works as expected, and this trip too 12mins and 40 seconds.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data<span class="op">$</span>trip_time_in_secs[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] 759</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">minutes</span>(dt1)<span class="op">*</span><span class="dv">60</span> <span class="op">+</span><span class="st"> </span><span class="kw">seconds</span>(dt1)</code></pre></div>
+<pre><code>## [1] 760</code></pre>
+<p>Let’s see what the dates look like now in summary:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>pickup_datetime)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"(2013-Apr-01 00:00:00)"},{"1":"1st Qu.","2":"(2013-Apr-08 16:37:00)"},{"1":"Median","2":"(2013-Apr-16 01:48:19)"},{"1":"Mean","2":"(2013-Apr-16 02:10:57)"},{"1":"3rd Qu.","2":"(2013-Apr-23 14:09:00)"},{"1":"Max.","2":"(2013-Apr-30 23:59:58)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>dropoff_datetime)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"(2013-Apr-01 00:00:00)"},{"1":"1st Qu.","2":"(2013-Apr-08 16:50:00)"},{"1":"Median","2":"(2013-Apr-16 01:59:00)"},{"1":"Mean","2":"(2013-Apr-16 02:23:24)"},{"1":"3rd Qu.","2":"(2013-Apr-23 14:23:00)"},{"1":"Max.","2":"(2013-May-01 02:19:25)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Let’s also check that nobody has been time-travelling… I will do this by checking that the dropoff time is always after the pickup time. The easiest way of doing this is to create a new variable subtracting pickup from dropoff (which should never be negative…)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data<span class="op">$</span>dropoff_minus_pickup &lt;-<span class="st"> </span>nyc_taxi_data<span class="op">$</span>dropoff_datetime <span class="op">-</span><span class="st"> </span>nyc_taxi_data<span class="op">$</span>pickup_datetime
+<span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>dropoff_minus_pickup)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"-0.006099537"},{"1":"1st Qu.","2":"0.004166667"},{"1":"Median","2":"0.006944444"},{"1":"Mean","2":"0.008652602"},{"1":"3rd Qu.","2":"0.011111111"},{"1":"Max.","2":"21.023020833"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>dropoff_minus_pickup, <span class="dt">main =</span> <span class="st">&quot;Hist. of dropoff_minus_pickup&quot;</span>)</code></pre></div>
+<pre><code>## Warning in hist.default(nyc_taxi_data$dropoff_minus_pickup, main = &quot;Hist. of dropoff_minus_pickup&quot;, : argument &#39;main&#39; is not made use of</code></pre>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Let’s check out which trips involved time travelling!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>dropoff_minus_pickup <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>)
+ii</code></pre></div>
+<pre><code>##  [1]   613950   651144   722943   740186  1049340  1100514  1136798  1230101  1255189  1319879  1355102  1461877  1615274  1655330  1689043  1698136  1703909  1906953  1960310  2078114
+## [21]  2103715  2195230  2230000  2251837  2314095  2360981  2381764  2461831  2463556  2644608  2749424  2892785  2933118  3006993  3107121  3163703  3249466  3274332  4485192  9520106
+## [41]  9700692  9748483  9894562  9998572 10069496 10311968 10447367 10523434 10590794 10614966 10638838 10646679 10683497 10715688 10791512 10984947 11739915 12306333</code></pre>
+<p>Not a whole lot!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data[ii,]</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["medallion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hack_license"],"name":[2],"type":["chr"],"align":["left"]},{"label":["vendor_id"],"name":[3],"type":["fctr"],"align":["left"]},{"label":["rate_code"],"name":[4],"type":["fctr"],"align":["left"]},{"label":["store_and_fwd_flag"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["pickup_datetime"],"name":[6],"type":["S3: chron"],"align":["right"]},{"label":["dropoff_datetime"],"name":[7],"type":["S3: chron"],"align":["right"]},{"label":["passenger_count"],"name":[8],"type":["int"],"align":["right"]},{"label":["trip_time_in_secs"],"name":[9],"type":["int"],"align":["right"]},{"label":["trip_distance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["pickup_longitude"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["pickup_latitude"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["dropoff_longitude"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["dropoff_latitude"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["payment_type"],"name":[15],"type":["fctr"],"align":["left"]},{"label":["fare_amount"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["surcharge"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["mta_tax"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["tips"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["tolls"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["total_amount"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["randID"],"name":[22],"type":["int"],"align":["right"]},{"label":["dropoff_minus_pickup"],"name":[23],"type":["S3: times"],"align":["right"]}],"data":[{"1":"462F41CEF2DAC35B85094FE4254E7800","2":"FE19128383195558898CD9A6FB7E0AE1","3":"CMT","4":"1","5":"N","6":"(2013-Apr-27 14:02:44)","7":"(2013-Apr-27 14:02:00)","8":"2","9":"2","10":"1.7","11":"-74.00543","12":"40.72739","13":"-74.00543","14":"40.72739","15":"CSH","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"72","23":"-5.092593e-04"},{"1":"FA63A1D39D6828F8C401A977C7D6879A","2":"707468D8E02602D48F19D99A0720DA17","3":"CMT","4":"1","5":"N","6":"(2013-Apr-27 16:32:11)","7":"(2013-Apr-27 16:29:00)","8":"1","9":"30","10":"0.1","11":"-73.95906","12":"40.77816","13":"-73.96016","14":"40.77886","15":"NOC","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"70","23":"-2.210648e-03"},{"1":"7FBE8D7FE6F3A85DBFB4A3DDEAD76CA1","2":"FD3581760E90856F4BB4CCB062C85DCE","3":"CMT","4":"1","5":"N","6":"(2013-Apr-21 03:19:32)","7":"(2013-Apr-21 03:19:00)","8":"2","9":"8","10":"0.8","11":"-73.98752","12":"40.72238","13":"-73.98751","14":"40.72240","15":"NOC","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"8","23":"-3.703704e-04"},{"1":"D7641AA04B3C8CD9DF524A0B11E0357D","2":"D7C8D417D823BDDCAC27BE01528ACECB","3":"CMT","4":"0","5":"N","6":"(2013-Apr-18 20:19:02)","7":"(2013-Apr-18 20:19:01)","8":"1","9":"0","10":"0.0","11":"0.00000","12":"0.00000","13":"0.00000","14":"0.00000","15":"CRD","16":"69.38","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"69.38","22":"24","23":"-1.157407e-05"},{"1":"C7E2AE0162BDDED667595AE0D31F8088","2":"BC073F1B6F7D8AE519EBA555031EFECC","3":"CMT","4":"1","5":"N","6":"(2013-Apr-23 19:21:49)","7":"(2013-Apr-23 19:20:00)","8":"1","9":"5","10":"3.9","11":"-73.94572","12":"40.82752","13":"-73.94572","14":"40.82752","15":"CRD","16":"2.50","17":"1.0","18":"0.5","19":"13.00","20":"0.00","21":"17.00","22":"7","23":"-1.261574e-03"},{"1":"722481A46D78DA2DA5354AB0DE197D3B","2":"F6F2E67FB1E355060AA72C6BDD99A7DB","3":"CMT","4":"3","5":"N","6":"(2013-Apr-23 20:14:20)","7":"(2013-Apr-23 20:13:00)","8":"1","9":"9","10":"6.7","11":"-73.99811","12":"40.71962","13":"-73.99812","14":"40.71963","15":"CRD","16":"20.00","17":"0.5","18":"0.0","19":"9.50","20":"0.00","21":"30.00","22":"10","23":"-9.259259e-04"},{"1":"555532182AC72641D2C09DC95DFC78FD","2":"57DC78CD80BF490A5845DA2A93051971","3":"CMT","4":"1","5":"N","6":"(2013-Apr-20 01:30:43)","7":"(2013-Apr-20 01:29:00)","8":"4","9":"3","10":"1.5","11":"-73.96634","12":"40.79250","13":"-73.96634","14":"40.79250","15":"CRD","16":"2.50","17":"0.5","18":"0.5","19":"6.00","20":"0.00","21":"9.50","22":"45","23":"-1.192130e-03"},{"1":"49CC652C956E7166E56A91FA2FA2D9A7","2":"7EECC2251CA96C36928E9CD41694C85A","3":"CMT","4":"1","5":"N","6":"(2013-Apr-19 18:49:42)","7":"(2013-Apr-19 18:49:00)","8":"1","9":"6","10":"1.2","11":"-73.94878","12":"40.74488","13":"-73.94878","14":"40.74490","15":"NOC","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"28","23":"-4.861111e-04"},{"1":"073E554D0345EFB08A9FE38C61AD2335","2":"CB850648762C800712DBEFF9A3B5B036","3":"CMT","4":"1","5":"N","6":"(2013-Apr-20 19:53:55)","7":"(2013-Apr-20 19:52:00)","8":"1","9":"13","10":"3.7","11":"-73.99020","12":"40.75827","13":"-73.99021","14":"40.75826","15":"NOC","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"14","23":"-1.331019e-03"},{"1":"CD847FE5884F10A28217E9FBA11B275B","2":"5FEFD00D9773268B72EE4E879852F190","3":"CMT","4":"5","5":"N","6":"(2013-Apr-25 12:11:06)","7":"(2013-Apr-25 12:10:00)","8":"1","9":"32","10":"1.6","11":"-73.97008","12":"40.76474","13":"-73.96993","14":"40.76474","15":"CRD","16":"12.00","17":"0.0","18":"0.0","19":"2.40","20":"0.00","21":"14.40","22":"3","23":"-7.638889e-04"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-25 20:17:10)","7":"(2013-Apr-25 20:15:00)","8":"1","9":"32","10":"1.6","11":"0.00000","12":"0.00000","13":"0.00000","14":"0.00000","15":"CRD","16":"13.50","17":"0.0","18":"0.0","19":"2.70","20":"0.00","21":"16.20","22":"29","23":"-1.504630e-03"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-19 21:22:55)","7":"(2013-Apr-19 21:21:00)","8":"1","9":"23","10":"1.6","11":"-73.94243","12":"40.75410","13":"-73.94261","14":"40.75394","15":"CRD","16":"8.00","17":"0.0","18":"0.0","19":"1.00","20":"0.00","21":"9.00","22":"55","23":"-1.331019e-03"},{"1":"4AAD54CD0C91388E39734502C550898E","2":"3FB6E5D29135FBE9147457B64ABC5CD0","3":"CMT","4":"1","5":"N","6":"(2013-Apr-21 23:38:35)","7":"(2013-Apr-21 23:38:00)","8":"1","9":"39","10":"0.1","11":"-73.96643","12":"40.76494","13":"-73.96775","14":"40.76315","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"34","23":"-4.050926e-04"},{"1":"342381FAD34CA62E35CF71409DFEED43","2":"248A23C0175F2A9DC88BE5382DC71FF3","3":"CMT","4":"1","5":"N","6":"(2013-Apr-19 10:28:18)","7":"(2013-Apr-19 10:27:47)","8":"1","9":"1062","10":"3.9","11":"0.00000","12":"0.00000","13":"-74.00753","14":"40.72885","15":"CRD","16":"16.00","17":"0.0","18":"0.5","19":"3.30","20":"0.00","21":"19.80","22":"18","23":"-3.587963e-04"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-28 01:55:34)","7":"(2013-Apr-28 01:53:00)","8":"1","9":"18","10":"0.7","11":"-73.99625","12":"40.76083","13":"-73.99622","14":"40.76084","15":"CRD","16":"5.58","17":"0.0","18":"0.0","19":"1.65","20":"0.00","21":"7.23","22":"82","23":"-1.782407e-03"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-28 01:07:16)","7":"(2013-Apr-28 01:05:00)","8":"2","9":"18","10":"7.8","11":"-73.99783","12":"40.68740","13":"-73.99779","14":"40.68740","15":"CRD","16":"25.50","17":"0.0","18":"0.0","19":"2.50","20":"0.00","21":"28.00","22":"86","23":"-1.574074e-03"},{"1":"387FF013EA3C2F01612A3AB13F5D236D","2":"2554D67E159BD766B508B2310E2F21DA","3":"CMT","4":"1","5":"N","6":"(2013-Apr-20 21:26:06)","7":"(2013-Apr-20 21:26:00)","8":"1","9":"16","10":"0.8","11":"-73.99143","12":"40.68800","13":"-73.99116","14":"40.68779","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"21","23":"-6.944444e-05"},{"1":"6AE49549AFB584A0B3A2BB56B5369747","2":"B76C34A6FE0D5CACB3C827C541F3EDD1","3":"CMT","4":"1","5":"N","6":"(2013-Apr-23 13:34:50)","7":"(2013-Apr-23 13:34:00)","8":"1","9":"11","10":"0.9","11":"-73.98807","12":"40.74781","13":"-73.98803","14":"40.74782","15":"NOC","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"84","23":"-5.787037e-04"},{"1":"6FB9F4DDA5E81308EE366E6D51BF099B","2":"E759912C47DD144EA79B81FC18659023","3":"CMT","4":"1","5":"N","6":"(2013-Apr-23 14:01:30)","7":"(2013-Apr-23 14:01:00)","8":"1","9":"24","10":"11.3","11":"-73.87378","12":"40.74034","13":"-73.87376","14":"40.74034","15":"CSH","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"46","23":"-3.472222e-04"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-24 16:21:53)","7":"(2013-Apr-24 16:20:00)","8":"1","9":"9","10":"0.1","11":"-73.95389","12":"40.76320","13":"-73.95469","14":"40.76231","15":"CSH","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"93","23":"-1.307870e-03"},{"1":"51A32C7DFEAE66C01B83A8498A682699","2":"34DA5240FE7F5F7B91EFCA8ED0AE7404","3":"CMT","4":"1","5":"N","6":"(2013-Apr-25 03:48:47)","7":"(2013-Apr-25 03:48:00)","8":"1","9":"6","10":"13.5","11":"-73.96181","12":"40.75617","13":"-73.96208","14":"40.75624","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"79","23":"-5.439815e-04"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-25 17:33:10)","7":"(2013-Apr-25 17:31:00)","8":"1","9":"6","10":"16.6","11":"-73.87151","12":"40.73099","13":"-73.87151","14":"40.73099","15":"CSH","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"5.33","21":"9.33","22":"57","23":"-1.504630e-03"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-26 00:12:26)","7":"(2013-Apr-26 00:11:00)","8":"1","9":"5","10":"0.1","11":"-73.98412","12":"40.67584","13":"-73.98365","14":"40.67648","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"2","23":"-9.953704e-04"},{"1":"E05E952B2DA14C7E9F1D7DEB80667739","2":"995946B83ED1E458C360F912608218AE","3":"CMT","4":"1","5":"N","6":"(2013-Apr-21 00:22:22)","7":"(2013-Apr-21 00:21:00)","8":"1","9":"3","10":"0.8","11":"-73.98724","12":"40.72905","13":"-73.98724","14":"40.72905","15":"CRD","16":"2.50","17":"0.5","18":"0.5","19":"4.00","20":"0.00","21":"7.50","22":"73","23":"-9.490741e-04"},{"1":"C90A0D51CCE3EB4DA3E451E5A35BFDCC","2":"AF86D00780C9CFF672C4E95B10212C2C","3":"CMT","4":"3","5":"N","6":"(2013-Apr-26 09:43:46)","7":"(2013-Apr-26 09:42:00)","8":"2","9":"6","10":"2.3","11":"-74.00563","12":"40.72727","13":"-74.00565","14":"40.72723","15":"NOC","16":"20.00","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"20.00","22":"26","23":"-1.226852e-03"},{"1":"387FF013EA3C2F01612A3AB13F5D236D","2":"2554D67E159BD766B508B2310E2F21DA","3":"CMT","4":"1","5":"N","6":"(2013-Apr-19 22:01:19)","7":"(2013-Apr-19 22:01:00)","8":"1","9":"15","10":"1.0","11":"-73.98313","12":"40.67787","13":"-73.98325","14":"40.67789","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"95","23":"-2.199074e-04"},{"1":"7FBE8D7FE6F3A85DBFB4A3DDEAD76CA1","2":"FD3581760E90856F4BB4CCB062C85DCE","3":"CMT","4":"1","5":"N","6":"(2013-Apr-26 21:29:50)","7":"(2013-Apr-26 21:29:00)","8":"1","9":"2","10":"1.0","11":"-73.98114","12":"40.76986","13":"-73.98120","14":"40.76998","15":"NOC","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"11","23":"-5.787037e-04"},{"1":"CBB9AEB67C2053A9E313BFDC3B42C65D","2":"5052A85907B3C683C72C4DCF630E18CB","3":"CMT","4":"1","5":"N","6":"(2013-Apr-28 03:06:33)","7":"(2013-Apr-28 03:06:00)","8":"3","9":"5","10":"0.8","11":"-73.97680","12":"40.74531","13":"-73.97678","14":"40.74531","15":"NOC","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"96","23":"-3.819444e-04"},{"1":"722481A46D78DA2DA5354AB0DE197D3B","2":"F6F2E67FB1E355060AA72C6BDD99A7DB","3":"CMT","4":"1","5":"N","6":"(2013-Apr-27 23:48:51)","7":"(2013-Apr-27 23:48:00)","8":"1","9":"8","10":"1.0","11":"-73.97560","12":"40.68160","13":"-73.97561","14":"40.68158","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"35","23":"-5.902778e-04"},{"1":"A5BABC9F86C9A45EAA0B3D1A91704D25","2":"02C9A203526E33DB0FEBD4BD28AE67D7","3":"CMT","4":"1","5":"N","6":"(2013-Apr-28 21:44:47)","7":"(2013-Apr-28 21:36:00)","8":"2","9":"11","10":"3.4","11":"-73.95627","12":"40.77214","13":"-73.95627","14":"40.77214","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"18","23":"-6.099537e-03"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-29 23:08:56)","7":"(2013-Apr-29 23:06:00)","8":"2","9":"18","10":"4.0","11":"-73.98268","12":"40.77167","13":"-73.98269","14":"40.77165","15":"CRD","16":"7.00","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"7.00","22":"30","23":"-2.037037e-03"},{"1":"722481A46D78DA2DA5354AB0DE197D3B","2":"F6F2E67FB1E355060AA72C6BDD99A7DB","3":"CMT","4":"1","5":"N","6":"(2013-Apr-30 20:53:59)","7":"(2013-Apr-30 20:53:00)","8":"1","9":"7","10":"3.5","11":"-73.99423","12":"40.74046","13":"-73.99423","14":"40.74047","15":"CRD","16":"2.50","17":"0.5","18":"0.5","19":"12.50","20":"0.00","21":"16.00","22":"4","23":"-6.828704e-04"},{"1":"3A01EBD8ED437E778FF00E0D8E199433","2":"2DC7EF247D8678F1479435BA0725615E","3":"CMT","4":"5","5":"N","6":"(2013-Apr-30 23:08:16)","7":"(2013-Apr-30 23:03:00)","8":"1","9":"25","10":"1.5","11":"-73.98385","12":"40.72135","13":"-73.98385","14":"40.72135","15":"CRD","16":"8.50","17":"0.0","18":"0.0","19":"1.50","20":"0.00","21":"10.00","22":"4","23":"-3.657407e-03"},{"1":"4889838C96CCEAA292A50545290952EE","2":"743D08C081F6C0212E030C880320DEB2","3":"CMT","4":"1","5":"N","6":"(2013-Apr-19 11:51:01)","7":"(2013-Apr-19 11:51:00)","8":"1","9":"7","10":"0.0","11":"-73.92651","12":"40.74332","13":"-73.92651","14":"40.74332","15":"CSH","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"96","23":"-1.157407e-05"},{"1":"2FD815A45FA6C729406BB060774CE3D8","2":"850CFE298E810F657A26C584357501D5","3":"CMT","4":"1","5":"N","6":"(2013-Apr-29 13:50:00)","7":"(2013-Apr-29 13:48:34)","8":"1","9":"161","10":"0.3","11":"-73.98637","12":"40.74079","13":"-73.98148","14":"40.74122","15":"CSH","16":"3.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"52","23":"-9.953704e-04"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-30 12:45:02)","7":"(2013-Apr-30 12:43:00)","8":"2","9":"4","10":"9.3","11":"-73.86700","12":"40.77095","13":"-73.86732","14":"40.77061","15":"CSH","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"5.33","21":"8.33","22":"68","23":"-1.412037e-03"},{"1":"57571F42EA3DDAFA6F9282DDA72588CF","2":"2D885021EC7B7D339CFF4737E716ADAD","3":"CMT","4":"1","5":"N","6":"(2013-Apr-21 01:18:46)","7":"(2013-Apr-21 01:16:00)","8":"1","9":"8","10":"1.5","11":"-73.97139","12":"40.74906","13":"-73.97136","14":"40.74905","15":"NOC","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"1","23":"-1.921296e-03"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-30 16:45:41)","7":"(2013-Apr-30 16:44:00)","8":"1","9":"3","10":"2.7","11":"-73.94710","12":"40.75358","13":"-73.94700","14":"40.75354","15":"CSH","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"63","23":"-1.168981e-03"},{"1":"6740D970735809CA8F82C23FE937F600","2":"C2D9885B3F621590083DD7D6F0BBE18B","3":"CMT","4":"0","5":"N","6":"(2013-Apr-13 01:27:28)","7":"(2013-Apr-13 01:27:24)","8":"1","9":"0","10":"0.0","11":"0.00000","12":"0.00000","13":"0.00000","14":"0.00000","15":"CRD","16":"10.70","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"10.70","22":"82","23":"-4.629630e-05"},{"1":"ACB0C39A94CF9E6E24A9CFC51912B7E5","2":"689CB67F7B895122BEE3582C7964C066","3":"CMT","4":"0","5":"N","6":"(2013-Apr-19 11:52:23)","7":"(2013-Apr-19 11:52:22)","8":"1","9":"0","10":"0.0","11":"0.00000","12":"0.00000","13":"0.00000","14":"0.00000","15":"CRD","16":"44.00","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"44.00","22":"40","23":"-1.157407e-05"},{"1":"3A01EBD8ED437E778FF00E0D8E199433","2":"2DC7EF247D8678F1479435BA0725615E","3":"CMT","4":"1","5":"N","6":"(2013-Apr-25 23:11:15)","7":"(2013-Apr-25 23:11:00)","8":"1","9":"305","10":"1.0","11":"-73.99510","12":"40.73948","13":"-74.00841","14":"40.73825","15":"CRD","16":"5.50","17":"0.5","18":"0.5","19":"1.30","20":"0.00","21":"7.80","22":"22","23":"-1.736111e-04"},{"1":"827006828E21AF6033DDF7C7EFC19B36","2":"993592AE0ADFDD11CE2E42F8065BAAE0","3":"CMT","4":"1","5":"N","6":"(2013-Apr-20 21:09:35)","7":"(2013-Apr-20 21:09:00)","8":"1","9":"4","10":"1.9","11":"-73.96268","12":"40.75860","13":"-73.96268","14":"40.75859","15":"CRD","16":"2.50","17":"0.5","18":"0.5","19":"6.00","20":"0.00","21":"9.50","22":"52","23":"-4.050926e-04"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"1","5":"N","6":"(2013-Apr-20 00:55:18)","7":"(2013-Apr-20 00:54:00)","8":"2","9":"60","10":"0.3","11":"-73.99866","12":"40.74532","13":"-73.99284","14":"40.74333","15":"CSH","16":"3.00","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"99","23":"-9.027778e-04"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-27 02:47:43)","7":"(2013-Apr-27 02:45:00)","8":"1","9":"17","10":"0.1","11":"-73.94717","12":"40.82203","13":"-73.94719","14":"40.82207","15":"CRD","16":"3.50","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"3.50","22":"33","23":"-1.886574e-03"},{"1":"E9BA494DC1A1F26D186394EFBB8327CF","2":"BBF604B3A2426BFBAAC982AAAA0BF1B5","3":"CMT","4":"5","5":"N","6":"(2013-Apr-27 02:00:08)","7":"(2013-Apr-27 01:58:00)","8":"1","9":"32","10":"1.1","11":"-73.97915","12":"40.73614","13":"-73.97915","14":"40.73614","15":"CRD","16":"11.50","17":"0.0","18":"0.0","19":"2.30","20":"0.00","21":"13.80","22":"28","23":"-1.481481e-03"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-23 16:06:20)","7":"(2013-Apr-23 16:05:00)","8":"2","9":"4","10":"2.4","11":"-73.97613","12":"40.76363","13":"-73.97612","14":"40.76360","15":"CSH","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"22","23":"-9.259259e-04"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-24 13:02:50)","7":"(2013-Apr-24 13:01:00)","8":"1","9":"4","10":"3.6","11":"-73.98769","12":"40.75277","13":"-73.98769","14":"40.75275","15":"CSH","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"5.33","21":"8.33","22":"71","23":"-1.273148e-03"},{"1":"2614EA892906595B99B4DE4F09920089","2":"D1C38A09ACC34845C6BE3A127A5AACAF","3":"CMT","4":"0","5":"N","6":"(2013-Apr-18 15:42:55)","7":"(2013-Apr-18 15:42:41)","8":"1","9":"0","10":"0.0","11":"0.00000","12":"0.00000","13":"0.00000","14":"0.00000","15":"CRD","16":"19.50","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"19.50","22":"69","23":"-1.620370e-04"},{"1":"6CA03B2E8CB49CFA21FC882E7490818F","2":"BB414C3224324E0D135D22A9148764F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-26 13:25:27)","7":"(2013-Apr-26 13:24:00)","8":"1","9":"4","10":"12.7","11":"-74.18044","12":"40.69543","13":"-74.18105","14":"40.69510","15":"CSH","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"8.25","21":"11.25","22":"49","23":"-1.006944e-03"},{"1":"7FBE8D7FE6F3A85DBFB4A3DDEAD76CA1","2":"FD3581760E90856F4BB4CCB062C85DCE","3":"CMT","4":"1","5":"N","6":"(2013-Apr-26 00:34:14)","7":"(2013-Apr-26 00:34:00)","8":"1","9":"7","10":"2.4","11":"-73.98574","12":"40.76794","13":"-73.98576","14":"40.76796","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"92","23":"-1.620370e-04"},{"1":"C1E577849499FAA6930D82314ABAFF1F","2":"0C46772ABF852BF891967F0A78775222","3":"CMT","4":"1","5":"N","6":"(2013-Apr-26 01:56:51)","7":"(2013-Apr-26 01:56:00)","8":"1","9":"1","10":"1.1","11":"-73.98367","12":"40.73808","13":"-73.98367","14":"40.73807","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"17","23":"-5.902778e-04"},{"1":"2C46A000B2E9A770A8BBC7A9D4929BF3","2":"4DA04049A062F5ADFE81B67DD755CECC","3":"CMT","4":"1","5":"N","6":"(2013-Apr-25 17:17:16)","7":"(2013-Apr-25 17:17:00)","8":"2","9":"5","10":"0.0","11":"-73.94872","12":"40.74483","13":"-73.94872","14":"40.74483","15":"CSH","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"85","23":"-1.851852e-04"},{"1":"DA6D559AE61600A3161758885FDCB911","2":"ABFFC41D42EA81A262917CAD4741DABF","3":"CMT","4":"1","5":"N","6":"(2013-Apr-21 14:13:17)","7":"(2013-Apr-21 14:13:00)","8":"1","9":"70","10":"0.0","11":"-74.00862","12":"40.72198","13":"-74.00862","14":"40.72198","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"4","23":"-1.967593e-04"},{"1":"A5A8A43BC46B1407C12AC4D4E336BF29","2":"08042CA151A40CD73FC12AF7DC482E07","3":"CMT","4":"1","5":"N","6":"(2013-Apr-19 23:22:01)","7":"(2013-Apr-19 23:21:00)","8":"1","9":"44","10":"0.6","11":"-73.98737","12":"40.72991","13":"-73.98686","14":"40.72974","15":"NOC","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"15","23":"-7.060185e-04"},{"1":"518A5CC8476877D8B1A05654C6B3E27D","2":"3F5BFB1F34B726592F322F245E5D179A","3":"CMT","4":"0","5":"N","6":"(2013-Apr-05 11:46:31)","7":"(2013-Apr-05 11:46:30)","8":"1","9":"0","10":"0.0","11":"0.00000","12":"0.00000","13":"0.00000","14":"0.00000","15":"CRD","16":"17.50","17":"0.0","18":"0.0","19":"0.00","20":"0.00","21":"17.50","22":"21","23":"-1.157407e-05"},{"1":"02536669BC1D149D7F2F867CC403E60C","2":"2E9EC57D38604AFF526D6E26D65D85C4","3":"CMT","4":"1","5":"N","6":"(2013-Apr-03 18:39:01)","7":"(2013-Apr-03 18:39:00)","8":"1","9":"5","10":"1.0","11":"-73.98566","12":"40.73840","13":"-73.98566","14":"40.73840","15":"NOC","16":"2.50","17":"1.0","18":"0.5","19":"0.00","20":"0.00","21":"4.00","22":"80","23":"-1.157407e-05"},{"1":"6C7810EA10F4A6671D6F3610E3D3A8C3","2":"B359D419C321D5BEC743D8E0F18D99F8","3":"CMT","4":"1","5":"N","6":"(2013-Apr-05 07:00:00)","7":"(2013-Apr-05 06:59:12)","8":"1","9":"1","10":"2.4","11":"-73.97570","12":"40.75725","13":"-73.97568","14":"40.75725","15":"NOC","16":"2.50","17":"0.0","18":"0.5","19":"0.00","20":"0.00","21":"3.00","22":"91","23":"-5.555556e-04"},{"1":"3CA71A23F09A8FF5AE5ABCEDC96798DD","2":"13B489095700D08DE5C04B9287718A51","3":"CMT","4":"1","5":"N","6":"(2013-Apr-13 04:09:01)","7":"(2013-Apr-13 04:09:00)","8":"1","9":"6","10":"0.0","11":"-73.99960","12":"40.72735","13":"-73.99960","14":"40.72735","15":"CSH","16":"2.50","17":"0.5","18":"0.5","19":"0.00","20":"0.00","21":"3.50","22":"32","23":"-1.157407e-05"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Let’s flag this journey as “bad” with an informative reason:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data<span class="op">$</span>bad_data_flag &lt;-<span class="st"> &quot;&quot;</span>
+
+nyc_taxi_data<span class="op">$</span>bad_data_flag[ii] &lt;-<span class="st"> &quot;time travelling,&quot;</span></code></pre></div>
+<p>Now that everything looks good, let’s sign-off on the dates and move onto the next data column:</p>
+<p>Setting the date-times to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="kw">c</span>(<span class="st">&quot;pickup_datetime&quot;</span>,<span class="st">&quot;dropoff_datetime&quot;</span>))
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="passenger-count" class="section level3">
+<h3>Passenger Count</h3>
+<hr />
+<div id="passenger-count-1" class="section level4">
+<h4>Passenger Count</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;passenger_count&quot;</span>)</code></pre></div>
+<pre><code>## passenger_count :
+##  The number of passengers in the vehicle. This is a driver-entered value.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>passenger_count, <span class="dt">main =</span> <span class="st">&quot;Hist. of passenger_count&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(<span class="kw">as.factor</span>(nyc_taxi_data<span class="op">$</span>passenger_count))</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"0","2":"229"},{"1":"1","2":"10706169"},{"1":"2","2":"1985568"},{"1":"3","2":"609798"},{"1":"4","2":"298114"},{"1":"5","2":"890034"},{"1":"6","2":"609250"},{"1":"8","2":"1"},{"1":"9","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The majority of trips have a solo passenger - this is pretty much as expected. The second peak at 5/6 passengers is for MaxiCabs. There are a tiny number of trips without passengers - could be just delivering parcels? Nothing unexpected here - this passes the quality checks.</p>
+<p>Setting the passenger count to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;passenger_count&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="time-in-seconds" class="section level3">
+<h3>Time in seconds</h3>
+<hr />
+<div id="time-in-seconds-1" class="section level4">
+<h4>Time in seconds</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;trip_time_in_secs&quot;</span>)</code></pre></div>
+<pre><code>## trip_time_in_secs :
+##  Trip time in seconds</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>trip_time_in_secs, <span class="dt">main =</span> <span class="st">&quot;Hist. of trip_time_in_secs&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/tip_time_secs_hist-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>trip_time_in_secs)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"360"},{"1":"Median","2":"600"},{"1":"Mean","2":"746.610085763689"},{"1":"3rd Qu.","2":"960"},{"1":"Max.","2":"10800"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the trip time in seconds to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;trip_time_in_secs&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="trip-distance" class="section level3">
+<h3>Trip Distance</h3>
+<hr />
+<div id="trip-distance-1" class="section level4">
+<h4>Trip Distance</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;trip_distance&quot;</span>)</code></pre></div>
+<pre><code>## trip_distance :
+##  The elapsed trip distance in miles reported by the taximeter.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>trip_distance, <span class="dt">main =</span> <span class="st">&quot;Hist. of trip_distance&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>trip_distance)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"1.04"},{"1":"Median","2":"1.78"},{"1":"Mean","2":"2.86269904280793"},{"1":"3rd Qu.","2":"3.2"},{"1":"Max.","2":"100"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the trip distance to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;trip_distance&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="fare-amount" class="section level3">
+<h3>Fare Amount</h3>
+<hr />
+<div id="fare-amount-1" class="section level4">
+<h4>Fare Amount</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;fare_amount&quot;</span>)</code></pre></div>
+<pre><code>## fare_amount :
+##  The time-and-distance fare calculated by the meter.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>fare_amount, <span class="dt">main =</span> <span class="st">&quot;Hist. of fare_amount&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>fare_amount)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"2.5"},{"1":"1st Qu.","2":"6.5"},{"1":"Median","2":"9.5"},{"1":"Mean","2":"12.2730547313745"},{"1":"3rd Qu.","2":"14"},{"1":"Max.","2":"500"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the fare amount to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;fare_amount&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="surcharge" class="section level3">
+<h3>Surcharge</h3>
+<hr />
+<div id="surcharge-1" class="section level4">
+<h4>Surcharge</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;surcharge&quot;</span>)</code></pre></div>
+<pre><code>## surcharge :
+##  Miscellaneous extras and surcharges. Currently this only includes the 0.50 USD and 1 USD rush hour and overnight charges.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>surcharge, <span class="dt">main =</span> <span class="st">&quot;Hist. of surcharge&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>surcharge)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"0"},{"1":"Median","2":"0"},{"1":"Mean","2":"0.326700467655031"},{"1":"3rd Qu.","2":"0.5"},{"1":"Max.","2":"15"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the surcharge to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;surcharge&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="mts-tax" class="section level3">
+<h3>MTS Tax</h3>
+<hr />
+<div id="mts-tax-1" class="section level4">
+<h4>MTS Tax</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;mta_tax&quot;</span>)</code></pre></div>
+<pre><code>## mta_tax :
+##  The 0.50 USD MTA tax that is automatically triggered based on the metered rate in use.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>mta_tax, <span class="dt">main =</span> <span class="st">&quot;Hist. of mta_tax&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>mta_tax)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"0.5"},{"1":"Median","2":"0.5"},{"1":"Mean","2":"0.498323483339872"},{"1":"3rd Qu.","2":"0.5"},{"1":"Max.","2":"0.5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the mta_tax to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;mta_tax&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="tips" class="section level3">
+<h3>Tips</h3>
+<hr />
+<div id="tips-1" class="section level4">
+<h4>Tips</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;tips&quot;</span>)</code></pre></div>
+<pre><code>## tips :
+##  Tip amount - This field is automatically populated for credit card tips. Cash tips are not included.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>tips, <span class="dt">main =</span> <span class="st">&quot;Hist. of tips&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>tips)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"0"},{"1":"Median","2":"1"},{"1":"Mean","2":"1.34561062254837"},{"1":"3rd Qu.","2":"2"},{"1":"Max.","2":"200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>This isn’t super useful - instead - we can look at Tips as a percentage (%) of the metered fare:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyc_taxi_data<span class="op">$</span>tips_percent &lt;-<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span>nyc_taxi_data<span class="op">$</span>tips<span class="op">/</span>nyc_taxi_data<span class="op">$</span>fare_amount
+
+<span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>tips_percent, <span class="dt">main =</span> <span class="st">&quot;Hist. of tips_percent&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>tips_percent)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"0"},{"1":"Median","2":"8.51063829787234"},{"1":"Mean","2":"10.7490589938034"},{"1":"3rd Qu.","2":"20.9302325581395"},{"1":"Max.","2":"6360"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>WOW! Some very generous tippers! Let’s see if there’s anything fishy in the data at the extreme tipping end:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ii &lt;-<span class="st"> </span><span class="kw">which</span>(nyc_taxi_data<span class="op">$</span>tips_percent <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>)</code></pre></div>
+<p>We found 8857 extreme tippers, tipping more than the actually fare itself. This is a very small percentage however; only 0.06% of all the trip data. Let’s have a look at some of them:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Putting fare amount at the end next to the percentage fot an easier visual comparison</span>
+extreme_tippers &lt;-<span class="st"> </span>nyc_taxi_data[ii,]
+
+<span class="co"># Moving the most relevant columns to the front of the table:</span>
+jj &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">names</span>(extreme_tippers) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;fare_amount&quot;</span>,<span class="st">&quot;tips&quot;</span>,<span class="st">&quot;tips_percent&quot;</span>))
+extreme_tippers &lt;-<span class="st"> </span><span class="kw">cbind</span>(extreme_tippers[,jj], extreme_tippers[,<span class="op">-</span>jj])
+
+extreme_tippers_top9 &lt;-<span class="st"> </span>extreme_tippers <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tips_percent)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">top_n</span>(<span class="dv">9</span>, tips_percent)
+extreme_tippers_btm9 &lt;-<span class="st"> </span>extreme_tippers <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(tips_percent)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">top_n</span>(<span class="op">-</span><span class="dv">9</span>, tips_percent)
+
+extreme_tippers_top9</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["fare_amount"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["tips"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["tips_percent"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["medallion"],"name":[4],"type":["chr"],"align":["left"]},{"label":["hack_license"],"name":[5],"type":["chr"],"align":["left"]},{"label":["vendor_id"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["rate_code"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["store_and_fwd_flag"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["pickup_datetime"],"name":[9],"type":["S3: chron"],"align":["right"]},{"label":["dropoff_datetime"],"name":[10],"type":["S3: chron"],"align":["right"]},{"label":["passenger_count"],"name":[11],"type":["int"],"align":["right"]},{"label":["trip_time_in_secs"],"name":[12],"type":["int"],"align":["right"]},{"label":["trip_distance"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["pickup_longitude"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["pickup_latitude"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["dropoff_longitude"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["dropoff_latitude"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["payment_type"],"name":[18],"type":["fctr"],"align":["left"]},{"label":["surcharge"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["mta_tax"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["tolls"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["total_amount"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["randID"],"name":[23],"type":["int"],"align":["right"]},{"label":["dropoff_minus_pickup"],"name":[24],"type":["S3: times"],"align":["right"]},{"label":["bad_data_flag"],"name":[25],"type":["chr"],"align":["left"]}],"data":[{"1":"2.5","2":"159.0","3":"6360","4":"659E458DAB4994068BDE5379AA02B621","5":"F5DD325D1D22596FAF60826FF2B0EDE4","6":"VTS","7":"1","8":"","9":"(2013-Apr-11 12:36:00)","10":"(2013-Apr-11 12:37:00)","11":"6","12":"60","13":"0.0","14":"-74.33269","15":"40.67238","16":"-74.33265","17":"40.67243","18":"CRD","19":"0.0","20":"0.5","21":"0","22":"162.0","23":"43","24":"00:01:00","25":""},{"1":"2.5","2":"147.0","3":"5880","4":"B8CFAC75AABC19F3F90DE23C8DA12F26","5":"E8234B43F64FE0ACC5CD3916A8E15CEE","6":"VTS","7":"1","8":"","9":"(2013-Apr-26 12:39:00)","10":"(2013-Apr-26 12:44:00)","11":"1","12":"300","13":"0.0","14":"-73.77631","15":"40.64532","16":"-73.77628","17":"40.64529","18":"CRD","19":"0.0","20":"0.5","21":"0","22":"150.0","23":"33","24":"00:05:00","25":""},{"1":"2.5","2":"147.0","3":"5880","4":"8EF09128C289E05B00922E7C154EE1E8","5":"AF42C2087A47D8D2AD67B58808C6D287","6":"CMT","7":"6","8":"N","9":"(2013-Apr-23 12:30:00)","10":"(2013-Apr-23 12:30:00)","11":"1","12":"12","13":"0.0","14":"-73.62533","15":"41.02085","16":"-73.62533","17":"41.02085","18":"CRD","19":"0.0","20":"0.5","21":"0","22":"150.0","23":"58","24":"00:00:00","25":""},{"1":"2.5","2":"130.0","3":"5200","4":"D1EE28871EEBF38B3945C52640E8DD63","5":"28E996B9E75BCCC93BF24B99367F16AB","6":"VTS","7":"1","8":"","9":"(2013-Apr-21 20:54:00)","10":"(2013-Apr-21 20:54:00)","11":"1","12":"0","13":"0.0","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.5","20":"0.5","21":"0","22":"133.5","23":"57","24":"00:00:00","25":""},{"1":"2.5","2":"116.5","3":"4660","4":"97E274BCA336320AC730C7502204A13E","5":"AEDFA7C77A20BE5D7BE0666FBC0E5060","6":"VTS","7":"1","8":"","9":"(2013-Apr-25 22:03:00)","10":"(2013-Apr-25 22:04:00)","11":"1","12":"60","13":"0.0","14":"-74.04037","15":"40.73608","16":"-74.04037","17":"40.73608","18":"CRD","19":"0.5","20":"0.5","21":"0","22":"120.0","23":"34","24":"00:01:00","25":""},{"1":"2.5","2":"108.5","3":"4340","4":"49CC652C956E7166E56A91FA2FA2D9A7","5":"7EECC2251CA96C36928E9CD41694C85A","6":"CMT","7":"1","8":"N","9":"(2013-Apr-11 01:47:05)","10":"(2013-Apr-11 01:47:48)","11":"1","12":"43","13":"11.1","14":"-73.78694","15":"41.00672","16":"-73.78695","17":"41.00671","18":"CRD","19":"0.5","20":"0.5","21":"0","22":"112.0","23":"84","24":"00:00:43","25":""},{"1":"2.5","2":"106.0","3":"4240","4":"7B6678FEBB82FB013D2B1FE4B0A55B0A","5":"0A22C2D7A7AF74AE37381D399F6315EC","6":"VTS","7":"1","8":"","9":"(2013-Apr-04 19:57:00)","10":"(2013-Apr-04 19:57:00)","11":"1","12":"0","13":"0.0","14":"-74.18235","15":"40.68773","16":"-74.18235","17":"40.68773","18":"CRD","19":"1.0","20":"0.5","21":"0","22":"110.0","23":"80","24":"00:00:00","25":""},{"1":"2.5","2":"100.0","3":"4000","4":"5916DE8B693207C679F26A0E0EB1CDDD","5":"9D7EC0283294F8F5036F0390CF77FD95","6":"VTS","7":"1","8":"","9":"(2013-Apr-24 15:11:00)","10":"(2013-Apr-24 15:11:00)","11":"1","12":"0","13":"0.0","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.0","20":"0.5","21":"0","22":"103.0","23":"7","24":"00:00:00","25":""},{"1":"2.5","2":"100.0","3":"4000","4":"93016230D918385B81DBA8E407F1FE2D","5":"75F2B1C10C0667A3E15EF4904185B7DD","6":"VTS","7":"1","8":"","9":"(2013-Apr-27 15:22:00)","10":"(2013-Apr-27 15:22:00)","11":"2","12":"0","13":"0.0","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.0","20":"0.5","21":"0","22":"103.0","23":"48","24":"00:00:00","25":""},{"1":"2.5","2":"100.0","3":"4000","4":"9353AADDE79A8025BF13B6AC32BA3AE7","5":"77E045C4E502526C9E3789116DA97DFE","6":"VTS","7":"1","8":"","9":"(2013-Apr-04 20:00:00)","10":"(2013-Apr-04 20:00:00)","11":"5","12":"0","13":"0.0","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.5","20":"0.5","21":"0","22":"103.5","23":"18","24":"00:00:00","25":""},{"1":"2.5","2":"100.0","3":"4000","4":"6C837CE001AB76E2E95A3E362B5C74B8","5":"B3843A898999683E8D08DAAF387DB450","6":"VTS","7":"1","8":"","9":"(2013-Apr-06 01:35:00)","10":"(2013-Apr-06 01:35:00)","11":"6","12":"0","13":"0.0","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.5","20":"0.5","21":"0","22":"103.5","23":"75","24":"00:00:00","25":""},{"1":"2.5","2":"100.0","3":"4000","4":"F9F5C26C43B37D4114EB8622A2E3CAF5","5":"2BC7CD03E470F35F81930458D2D963F6","6":"VTS","7":"1","8":"","9":"(2013-Apr-08 15:16:00)","10":"(2013-Apr-08 15:17:00)","11":"6","12":"60","13":"0.0","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.0","20":"0.5","21":"0","22":"103.0","23":"85","24":"00:01:00","25":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extreme_tippers_btm9</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["fare_amount"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["tips"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["tips_percent"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["medallion"],"name":[4],"type":["chr"],"align":["left"]},{"label":["hack_license"],"name":[5],"type":["chr"],"align":["left"]},{"label":["vendor_id"],"name":[6],"type":["fctr"],"align":["left"]},{"label":["rate_code"],"name":[7],"type":["fctr"],"align":["left"]},{"label":["store_and_fwd_flag"],"name":[8],"type":["fctr"],"align":["left"]},{"label":["pickup_datetime"],"name":[9],"type":["S3: chron"],"align":["right"]},{"label":["dropoff_datetime"],"name":[10],"type":["S3: chron"],"align":["right"]},{"label":["passenger_count"],"name":[11],"type":["int"],"align":["right"]},{"label":["trip_time_in_secs"],"name":[12],"type":["int"],"align":["right"]},{"label":["trip_distance"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["pickup_longitude"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["pickup_latitude"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["dropoff_longitude"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["dropoff_latitude"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["payment_type"],"name":[18],"type":["fctr"],"align":["left"]},{"label":["surcharge"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["mta_tax"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["tolls"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["total_amount"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["randID"],"name":[23],"type":["int"],"align":["right"]},{"label":["dropoff_minus_pickup"],"name":[24],"type":["S3: times"],"align":["right"]},{"label":["bad_data_flag"],"name":[25],"type":["chr"],"align":["left"]}],"data":[{"1":"9.5","2":"9.58","3":"100.8421","4":"2138E9F6805A337B4659A3185C3327A8","5":"33ED9227D287BC6CB2F32CBD376D2094","6":"CMT","7":"1","8":"N","9":"(2013-Apr-10 01:14:00)","10":"(2013-Apr-10 01:23:03)","11":"1","12":"541","13":"2.10","14":"-73.99274","15":"40.73397","16":"-73.97300","17":"40.75539","18":"CRD","19":"0.5","20":"0.5","21":"0.0","22":"20.08","23":"71","24":"00:09:03","25":""},{"1":"8.5","2":"8.57","3":"100.8235","4":"6960208FC37C9DD5DFCE69EB5D9F9B25","5":"A4611AF5A3F9AE37B8F004683EA1B7CE","6":"VTS","7":"1","8":"","9":"(2013-Apr-22 09:43:00)","10":"(2013-Apr-22 09:55:00)","11":"1","12":"720","13":"0.74","14":"-73.98715","15":"40.75521","16":"-73.97968","17":"40.76014","18":"CRD","19":"0.0","20":"0.5","21":"0.0","22":"17.57","23":"43","24":"00:12:00","25":""},{"1":"28.0","2":"28.20","3":"100.7143","4":"71657B9D461AC4ADDC1F273F92379C66","5":"38F7BD31CD2F34C0CF8DE1EA8D658343","6":"CMT","7":"1","8":"N","9":"(2013-Apr-13 10:10:37)","10":"(2013-Apr-13 10:30:04)","11":"1","12":"1166","13":"9.00","14":"-73.99216","15":"40.75040","16":"-73.93308","17":"40.85218","18":"CRD","19":"0.0","20":"0.5","21":"0.0","22":"56.70","23":"3","24":"00:19:27","25":""},{"1":"85.0","2":"85.55","3":"100.6471","4":"1AE36AD0E461300B492D14DAF055BDF1","5":"D088FA65D9FE27EA311FC9A05AF0C5F0","6":"VTS","7":"5","8":"","9":"(2013-Apr-10 19:42:00)","10":"(2013-Apr-10 19:42:00)","11":"1","12":"0","13":"0.00","14":"0.00000","15":"0.00000","16":"0.00000","17":"0.00000","18":"CRD","19":"0.0","20":"0.5","21":"0.0","22":"171.05","23":"11","24":"00:00:00","25":""},{"1":"16.5","2":"16.60","3":"100.6061","4":"9666F80B89233169D19E01CF53EE3411","5":"69DEC255189A8EB550000098FFEE5E09","6":"VTS","7":"1","8":"","9":"(2013-Apr-20 02:34:00)","10":"(2013-Apr-20 02:52:00)","11":"6","12":"1080","13":"4.39","14":"-73.98447","15":"40.73311","16":"-73.96623","17":"40.68332","18":"CRD","19":"0.5","20":"0.5","21":"0.0","22":"34.10","23":"26","24":"00:18:00","25":""},{"1":"15.0","2":"15.08","3":"100.5333","4":"150F059AE6614D5B9F243AB82F5359D9","5":"64728CDF3F749BA0AB4805145BE1BF24","6":"VTS","7":"1","8":"","9":"(2013-Apr-29 23:57:00)","10":"(2013-Apr-30 00:11:00)","11":"1","12":"840","13":"4.53","14":"-73.99435","15":"40.75419","16":"-74.03915","17":"40.74225","18":"CRD","19":"0.5","20":"0.5","21":"0.0","22":"31.08","23":"83","24":"00:14:00","25":""},{"1":"19.5","2":"19.60","3":"100.5128","4":"048E071F54553845F1E0AEF0B7721A7C","5":"C1DB29FC79FF8345650568FFBDE2CE5F","6":"CMT","7":"1","8":"N","9":"(2013-Apr-29 14:26:01)","10":"(2013-Apr-29 14:55:11)","11":"1","12":"1750","13":"4.30","14":"-73.91512","15":"40.76385","16":"-73.97857","17":"40.76165","18":"CRD","19":"0.0","20":"0.5","21":"0.0","22":"39.60","23":"8","24":"00:29:10","25":""},{"1":"52.0","2":"52.14","3":"100.2692","4":"60DC999A38D953EE86AB81C23C9480E8","5":"30740349F4E666629D6D51C2B5CA5BBE","6":"VTS","7":"2","8":"","9":"(2013-Apr-15 15:08:00)","10":"(2013-Apr-15 15:08:00)","11":"1","12":"0","13":"0.00","14":"-73.98815","15":"40.76133","16":"-73.98815","17":"40.76133","18":"CRD","19":"0.0","20":"0.5","21":"5.5","22":"110.14","23":"91","24":"00:00:00","25":""},{"1":"11.0","2":"11.01","3":"100.0909","4":"7D5EBEEF1F35996553AE89392DF504C8","5":"E4F2BE721F17A32A89A7306DB94BC9CF","6":"VTS","7":"1","8":"","9":"(2013-Apr-30 13:10:00)","10":"(2013-Apr-30 13:23:00)","11":"1","12":"780","13":"2.48","14":"-73.99445","15":"40.74342","16":"-73.98761","17":"40.77033","18":"CRD","19":"0.0","20":"0.5","21":"0.0","22":"22.51","23":"53","24":"00:13:00","25":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Even though these tips are high, there’s nothing suspicious in the data to suggest that the information is incorrect/problematic. Some of the things that would have been red flags:</p>
+<ul>
+<li><p>All high tips going to one particular driver (not bad data, but something else suspicious happening…)</p></li>
+<li><p>Tips ending in zeroes suggesting that the person actually entered an extra zero into the card machine.</p></li>
+<li><p>Jumbling of data columns (it happens sometimes with CSV files)</p></li>
+</ul>
+<p>Nothing to worry about here.</p>
+<p>Setting the tips to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;tips&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="tolls" class="section level3">
+<h3>Tolls</h3>
+<hr />
+<div id="tolls-1" class="section level4">
+<h4>Tolls</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;tolls&quot;</span>)</code></pre></div>
+<pre><code>## tolls :
+##  Total amount of all tolls paid in trip.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>tolls, <span class="dt">main =</span> <span class="st">&quot;Hist. of tolls&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>tolls)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"0"},{"1":"1st Qu.","2":"0"},{"1":"Median","2":"0"},{"1":"Mean","2":"0.244539667229259"},{"1":"3rd Qu.","2":"0"},{"1":"Max.","2":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the tolls to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;tolls&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="total-amount" class="section level3">
+<h3>Total Amount</h3>
+<hr />
+<div id="total-amount-1" class="section level4">
+<h4>Total Amount</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;total_amount&quot;</span>)</code></pre></div>
+<pre><code>## total_amount :
+##  The total amount charged to passengers. Does not include cash tips.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(nyc_taxi_data<span class="op">$</span>total_amount, <span class="dt">main =</span> <span class="st">&quot;Hist. of total_amount&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>total_amount)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"Min.","2":"2.5"},{"1":"1st Qu.","2":"8"},{"1":"Median","2":"11"},{"1":"Mean","2":"14.6882289721471"},{"1":"3rd Qu.","2":"16.5"},{"1":"Max.","2":"628.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the total_amount to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;total_amount&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="payment-type" class="section level3">
+<h3>Payment Type</h3>
+<hr />
+<div id="payment-type-1" class="section level4">
+<h4>Payment Type</h4>
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_dict_defn</span>(<span class="st">&quot;payment_type&quot;</span>)</code></pre></div>
+<pre><code>## payment_type :
+##  A numeric code signifying how the passenger paid for the trip; 1= Credit card 2= Cash; 3= No charge 4= Dispute; 5= Unknown 6= Voided trip</code></pre>
+<p>The R <code>hist</code> function only works on numeric types. For a character flag such as this we need to write another function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">payment_type_hist &lt;-<span class="st"> </span>nyc_taxi_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(payment_type) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">summarise</span>(<span class="dt">num=</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(num))
+  
+<span class="kw">plot</span>(<span class="dt">x =</span> payment_type_hist<span class="op">$</span>payment_type, <span class="dt">y=</span>payment_type_hist<span class="op">$</span>num, <span class="dt">main =</span> <span class="st">&quot;Hist. of payment_type&quot;</span>)</code></pre></div>
+<p><img src="nyc_taxis_003_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nice_summary</span>(nyc_taxi_data<span class="op">$</span>payment_type)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["quantity"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["values"],"name":[2],"type":["fctr"],"align":["left"]}],"data":[{"1":"CRD","2":"8105102"},{"1":"CSH","2":"6942763"},{"1":"DIS","2":"11542"},{"1":"NOC","2":"33575"},{"1":"UNK","2":"6182"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Setting the payment_type to <code>clean = 1</code> in the data dictionary.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dictionary &lt;-<span class="st"> </span><span class="kw">update_dictionary</span>(<span class="st">&quot;payment_type&quot;</span>)
+<span class="kw">show_mini_dictionary</span>(data_dictionary)</code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+<th style="text-align:right;">
+Clean
+</th>
+<th style="text-align:left;">
+Variable_Name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+medallion
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+passenger_count
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+payment_type
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+hack_license
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_time_in_secs
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+fare_amount
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+vendor_id
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+trip_distance
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+surcharge
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+rate_code
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+mta_tax
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+store_and_fwd_flag
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+pickup_latitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tips
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+pickup_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_longitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+tolls
+</td>
+</tr>
+<tr>
+<td style="text-align:right;width: 10em; ">
+1
+</td>
+<td style="text-align:left;">
+dropoff_datetime
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+dropoff_latitude
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+total_amount
+</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="save-clean-easy-data" class="section level3">
+<h3>Save clean (easy) Data</h3>
+<hr />
+<div id="save-clean-easy-data-1" class="section level4">
+<h4>Save clean (easy) Data</h4>
+<hr />
+<p>Saving the data so far - we will save to and RDS (R Data Set) which will maintiain the data types (dates etc) for the data we have cleaned, and will also compress the data so that it takes up less space on disk:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save the data:</span>
+<span class="kw">saveRDS</span>(nyc_taxi_data, <span class="dt">file =</span> <span class="st">&quot;data/nyc_taxi_data_clean_easy.rds&quot;</span>)
+
+<span class="co"># Show that data files that exist and their file sizes:</span>
+<span class="co"># </span><span class="al">NOTE</span><span class="co"> - the system command here uses Unix (Mac and Linux) commands and will not work on Windows</span>
+<span class="cf">if</span>(.Platform<span class="op">$</span>OS.type <span class="op">==</span><span class="st"> &quot;unix&quot;</span>) {
+  data_files &lt;-<span class="st"> </span><span class="kw">system</span>(<span class="st">&quot;du -csh data/*&quot;</span>, <span class="dt">intern =</span> T)
+} <span class="cf">else</span> {
+  <span class="co"># For Windows</span>
+  data_files &lt;-<span class="st"> </span><span class="kw">system</span>(<span class="st">&quot;dir data/&quot;</span>, <span class="dt">intern =</span> T)
+}
+
+<span class="kw">cat</span>(<span class="kw">paste0</span>(data_files, <span class="dt">collapse=</span><span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>))</code></pre></div>
+<pre><code>## 4.0K data/data_dictionary.csv
+## 1.1G data/nyc_taxi_data.csv.gz
+## 960M data/nyc_taxi_data_clean_easy.rds
+## 944M data/nyc_taxi_data_clean_medium.rds
+## 6.5M data/nyc_taxi_data_small.csv.gz
+## 6.0M data/nyc_taxi_data_small_clean_easy.rds
+## 2.9G total</code></pre>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

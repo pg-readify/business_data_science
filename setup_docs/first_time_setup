@@ -1,0 +1,3 @@
+cp -rf /home/rstudio/nyc_taxi_data_challenge  /home/rstudio/docker_wormhole/.;
+
+wget -P /home/rstudio/docker_wormhole/nyc_taxi_data_challenge/data https://www.dropbox.com/s/vzsvzdczjnixwz6/nyc_taxi_data_clean_medium.rds\?dl\=1;

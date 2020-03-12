@@ -1,0 +1,23 @@
+Clean,Variable_Name,Variable_Description
+1,medallion,The drivers medallion number for NYC Yellow Taxi owners. (Medallion costs 1.3m USD)
+1,hack_license,The drivers unique license number
+1,vendor_id,A code indicating the TPEP provider that provided the record; 1= Creative Mobile Technologies  LLC; 2= VeriFone Inc
+1,rate_code,The final rate code in effect at the end of the trip; 1=Standard rate; 2=JFK; 3=Newark; 4=Nassau or Westchester; 5=Negotiated fare; 6=Group ride
+1,store_and_fwd_flag,This flag indicates whether the trip record was held in vehicle memory before sending to the vendor (aka store and forward) because the vehicle did not have a connection to the server; Y= store and forward trip; N= not a store and forward trip
+0,pickup_datetime,The date and time when the meter was engaged
+0,dropoff_datetime,The date and time when the meter was disengaged
+0,passenger_count,The number of passengers in the vehicle. This is a driver-entered value.
+0,trip_time_in_secs,Trip time in seconds
+0,trip_distance,The elapsed trip distance in miles reported by the taximeter.
+0,pickup_longitude,Pickup Longitude in degrees
+0,pickup_latitude,Pickup Latitude in degrees
+0,dropoff_longitude,Dropoff Longitude in degrees
+0,dropoff_latitude,Dropoff Latitude in degrees
+0,payment_type,A numeric code signifying how the passenger paid for the trip; 1= Credit card 2= Cash; 3= No charge 4= Dispute; 5= Unknown 6= Voided trip
+0,fare_amount,The time-and-distance fare calculated by the meter.
+0,surcharge,Miscellaneous extras and surcharges. Currently this only includes the 0.50 USD and 1 USD rush hour and overnight charges.
+0,mta_tax,The 0.50 USD MTA tax that is automatically triggered based on the metered rate in use.
+0,tips,Tip amount - This field is automatically populated for credit card tips. Cash tips are not included.
+0,tolls,Total amount of all tolls paid in trip.
+0,total_amount,The total amount charged to passengers. Does not include cash tips.
+1,randID,A random integer from 1 to 100 to enable repeatable sampling of the data.
