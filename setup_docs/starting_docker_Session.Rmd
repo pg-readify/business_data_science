@@ -21,8 +21,8 @@ open http://localhost:8787;
 You will need to copy-paste the following commands into PowerShell:
 
 ```{r, eval=F}
-md C:\Users\$USER\docker_wormhole;
-docker run -d -p 8787:8787 -p 3838:3838 -m=4g -v C:\Users\$USER\docker_wormhole:/home/rstudio/docker_wormhole -e DISABLE_AUTH=true hercules123/goodsy_nyc_taxis;
-timeout 1;
-start "" "http://localhost:8787";
+mkdir <wormhole_path>
+docker run -d -m 4g -p 8787:8787 -p 3838:3838 -e DISABLE_AUTH=true -v <wormhole_path>:/home/rstudio/docker_wormhole hercules123/goodsy_nyc_taxis
+timeout 1
+start-process http://localhost:8787
 ```
