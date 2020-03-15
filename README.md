@@ -7,19 +7,31 @@ This is the Repo associated with the `Business Problem Solving using Data` works
 
 ------------------------------------------------------------------------
 
-These are fairly large downloads (1.GB and 3.GB respectively) - best to do it in the office, and allow plenty of time before tomorrow's session.
+These are fairly large downloads (1 GB and 3 GB respectively) - best to do it in the office, and allow plenty of time before tomorrow's session.
 
 ------------------------------------------------------------------------
 
-### 1) Need to install Docker Desktop:
+### 1) Need to install and set-up Docker Desktop:
 
 #### 1.1) Windows: (917.MB)
 
 <https://hub.docker.com/editions/community/docker-ce-desktop-windows/>
 
-#### 1.2) Mac: (708.MB)
+#### 1.1) Mac: (708.MB)
 
 <https://hub.docker.com/editions/community/docker-ce-desktop-mac/>
+
+
+#### 1.2) Increase memory available to Docker
+Once installed, you need to give Docker the ability to access enough memory to work with our large dataset and run our apps.
+
+1. Open Docker Desktop
+1. Go to "Preferences" or "Settings" or similar
+1. Go to "Resources" > "Advanced"
+1. Use the slider to increase Memory to 8 GB and Swap to 2 GB
+1. Apply and restart Docker
+
+![Increasing memory for Docker](./increase_docker_memory.png)
 
 ------------------------------------------------------------------------
 
@@ -41,26 +53,26 @@ These are fairly large downloads (1.GB and 3.GB respectively) - best to do it in
 
 ------------------------------------------------------------------------
 
-### Mac Startup
+### Mac Startup (Terminal)
 
 You can use the Mac app `mac_run_session.app`, or you can copy-paste the following commands into Terminal:
 
-``` r
+``` bash
 mkdir -p ~/docker_wormhole;
 docker run -d -p 8787:8787 -p 3838:3838 -m=4g -v ~/docker_wormhole:/home/rstudio/docker_wormhole -e DISABLE_AUTH=true hercules123/goodsy_nyc_taxis;
 sleep 1;
 open http://localhost:8787;
 ```
 
-### Windows Startup
+### Windows Startup (PowerShell)
 
 You will need to copy-paste the following commands into PowerShell:
 
-``` r
-mkdir <wormhole_path>
-docker run -d -m 4g -p 8787:8787 -p 3838:3838 -e DISABLE_AUTH=true -v <wormhole_path>:/home/rstudio/docker_wormhole hercules123/goodsy_nyc_taxis
+``` powershell
+mkdir ~/docker_wormhole
+docker run -d -p 8787:8787 -p 3838:3838 -m=4g -v ~/docker_wormhole:/home/rstudio/docker_wormhole -e DISABLE_AUTH=true hercules123/goodsy_nyc_taxis
 timeout 1
-start-process http://localhost:8787
+Start-Process http://localhost:8787
 ```
 
 ------------------------------------------------------------------------
@@ -75,9 +87,9 @@ Your docker container will load into the R-studio IDE.
 
 Run commands in Terminal tab:
 
-``` r
+``` bash
 cd ~;
-.\first_time_setup;
+. first_time_setup;
 ```
 
 #### Useful links
